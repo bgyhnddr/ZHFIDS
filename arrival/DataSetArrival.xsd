@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetArrival" targetNamespace="http://tempuri.org/DataSetArrival.xsd" xmlns:mstns="http://tempuri.org/DataSetArrival.xsd" xmlns="http://tempuri.org/DataSetArrival.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="zh_fidsConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="zh_fidsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.data.Properties.Settings.GlobalReference.Default.zh_fidsConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ArrivalTableAdapter" GeneratorDataComponentClassName="ArrivalTableAdapter" Name="Arrival" UserDataComponentName="ArrivalTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="zh_fidsConnectionString (Settings)" DbObjectName="`zh-fids`.arrival" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT   flight, `date`, `from`, en_from, tovia, en_tovia, sta, eta, ata, airlinecode, carousel, forceshow, errorline, arrivalstatus, 
+                en_arrivalstatus, departoutward, departoutward_en, arrivaloutward, arrivaloutward_en, orderTime, adatetime, 
+                orgarrivalstatus
+FROM      arrival</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="flight" DataSetColumn="flight" />
+              <Mapping SourceColumn="from" DataSetColumn="from" />
+              <Mapping SourceColumn="en_from" DataSetColumn="en_from" />
+              <Mapping SourceColumn="tovia" DataSetColumn="tovia" />
+              <Mapping SourceColumn="en_tovia" DataSetColumn="en_tovia" />
+              <Mapping SourceColumn="sta" DataSetColumn="sta" />
+              <Mapping SourceColumn="eta" DataSetColumn="eta" />
+              <Mapping SourceColumn="ata" DataSetColumn="ata" />
+              <Mapping SourceColumn="airlinecode" DataSetColumn="airlinecode" />
+              <Mapping SourceColumn="carousel" DataSetColumn="carousel" />
+              <Mapping SourceColumn="forceshow" DataSetColumn="forceshow" />
+              <Mapping SourceColumn="errorline" DataSetColumn="errorline" />
+              <Mapping SourceColumn="arrivalstatus" DataSetColumn="arrivalstatus" />
+              <Mapping SourceColumn="en_arrivalstatus" DataSetColumn="en_arrivalstatus" />
+              <Mapping SourceColumn="date" DataSetColumn="date" />
+              <Mapping SourceColumn="departoutward" DataSetColumn="departoutward" />
+              <Mapping SourceColumn="departoutward_en" DataSetColumn="departoutward_en" />
+              <Mapping SourceColumn="arrivaloutward" DataSetColumn="arrivaloutward" />
+              <Mapping SourceColumn="arrivaloutward_en" DataSetColumn="arrivaloutward_en" />
+              <Mapping SourceColumn="orderTime" DataSetColumn="orderTime" />
+              <Mapping SourceColumn="adatetime" DataSetColumn="adatetime" />
+              <Mapping SourceColumn="orgarrivalstatus" DataSetColumn="orgarrivalstatus" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetArrival" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetArrival" msprop:Generator_UserDSName="DataSetArrival">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Arrival" msprop:Generator_TableClassName="ArrivalDataTable" msprop:Generator_TableVarName="tableArrival" msprop:Generator_TablePropName="Arrival" msprop:Generator_RowDeletingName="ArrivalRowDeleting" msprop:Generator_RowChangingName="ArrivalRowChanging" msprop:Generator_RowEvHandlerName="ArrivalRowChangeEventHandler" msprop:Generator_RowDeletedName="ArrivalRowDeleted" msprop:Generator_UserTableName="Arrival" msprop:Generator_RowChangedName="ArrivalRowChanged" msprop:Generator_RowEvArgName="ArrivalRowChangeEvent" msprop:Generator_RowClassName="ArrivalRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="flight" msprop:Generator_ColumnVarNameInTable="columnflight" msprop:Generator_ColumnPropNameInRow="flight" msprop:Generator_ColumnPropNameInTable="flightColumn" msprop:Generator_UserColumnName="flight">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="from" msprop:Generator_ColumnVarNameInTable="columnfrom" msprop:Generator_ColumnPropNameInRow="from" msprop:Generator_ColumnPropNameInTable="fromColumn" msprop:Generator_UserColumnName="from">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="en_from" msprop:Generator_ColumnVarNameInTable="columnen_from" msprop:Generator_ColumnPropNameInRow="en_from" msprop:Generator_ColumnPropNameInTable="en_fromColumn" msprop:Generator_UserColumnName="en_from" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tovia" msprop:Generator_ColumnVarNameInTable="columntovia" msprop:Generator_ColumnPropNameInRow="tovia" msprop:Generator_ColumnPropNameInTable="toviaColumn" msprop:Generator_UserColumnName="tovia">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="en_tovia" msprop:Generator_ColumnVarNameInTable="columnen_tovia" msprop:Generator_ColumnPropNameInRow="en_tovia" msprop:Generator_ColumnPropNameInTable="en_toviaColumn" msprop:Generator_UserColumnName="en_tovia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sta" msprop:Generator_ColumnVarNameInTable="columnsta" msprop:Generator_ColumnPropNameInRow="sta" msprop:Generator_ColumnPropNameInTable="staColumn" msprop:Generator_UserColumnName="sta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="eta" msprop:Generator_ColumnVarNameInTable="columneta" msprop:Generator_ColumnPropNameInRow="eta" msprop:Generator_ColumnPropNameInTable="etaColumn" msprop:Generator_UserColumnName="eta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ata" msprop:Generator_ColumnVarNameInTable="columnata" msprop:Generator_ColumnPropNameInRow="ata" msprop:Generator_ColumnPropNameInTable="ataColumn" msprop:Generator_UserColumnName="ata" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="airlinecode" msprop:Generator_ColumnVarNameInTable="columnairlinecode" msprop:Generator_ColumnPropNameInRow="airlinecode" msprop:Generator_ColumnPropNameInTable="airlinecodeColumn" msprop:Generator_UserColumnName="airlinecode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="carousel" msprop:Generator_ColumnVarNameInTable="columncarousel" msprop:Generator_ColumnPropNameInRow="carousel" msprop:Generator_ColumnPropNameInTable="carouselColumn" msprop:Generator_UserColumnName="carousel" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="forceshow" msprop:Generator_ColumnVarNameInTable="columnforceshow" msprop:Generator_ColumnPropNameInRow="forceshow" msprop:Generator_ColumnPropNameInTable="forceshowColumn" msprop:Generator_UserColumnName="forceshow" type="xs:int" />
+              <xs:element name="errorline" msprop:Generator_ColumnVarNameInTable="columnerrorline" msprop:Generator_ColumnPropNameInRow="errorline" msprop:Generator_ColumnPropNameInTable="errorlineColumn" msprop:Generator_UserColumnName="errorline" type="xs:long" />
+              <xs:element name="arrivalstatus" msprop:Generator_ColumnVarNameInTable="columnarrivalstatus" msprop:Generator_ColumnPropNameInRow="arrivalstatus" msprop:Generator_ColumnPropNameInTable="arrivalstatusColumn" msprop:Generator_UserColumnName="arrivalstatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="90" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="en_arrivalstatus" msprop:Generator_ColumnVarNameInTable="columnen_arrivalstatus" msprop:Generator_ColumnPropNameInRow="en_arrivalstatus" msprop:Generator_ColumnPropNameInTable="en_arrivalstatusColumn" msprop:Generator_UserColumnName="en_arrivalstatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="91" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="date" msprop:Generator_ColumnVarNameInTable="columndate" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnPropNameInTable="dateColumn" msprop:Generator_UserColumnName="date" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="departoutward" msprop:Generator_ColumnVarNameInTable="columndepartoutward" msprop:Generator_ColumnPropNameInRow="departoutward" msprop:Generator_ColumnPropNameInTable="departoutwardColumn" msprop:Generator_UserColumnName="departoutward" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="departoutward_en" msprop:Generator_ColumnVarNameInTable="columndepartoutward_en" msprop:Generator_ColumnPropNameInRow="departoutward_en" msprop:Generator_ColumnPropNameInTable="departoutward_enColumn" msprop:Generator_UserColumnName="departoutward_en" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="arrivaloutward" msprop:Generator_ColumnVarNameInTable="columnarrivaloutward" msprop:Generator_ColumnPropNameInRow="arrivaloutward" msprop:Generator_ColumnPropNameInTable="arrivaloutwardColumn" msprop:Generator_UserColumnName="arrivaloutward" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="arrivaloutward_en" msprop:Generator_ColumnVarNameInTable="columnarrivaloutward_en" msprop:Generator_ColumnPropNameInRow="arrivaloutward_en" msprop:Generator_ColumnPropNameInTable="arrivaloutward_enColumn" msprop:Generator_UserColumnName="arrivaloutward_en" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="orderTime" msprop:Generator_ColumnVarNameInTable="columnorderTime" msprop:Generator_ColumnPropNameInRow="orderTime" msprop:Generator_ColumnPropNameInTable="orderTimeColumn" msprop:Generator_UserColumnName="orderTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adatetime" msprop:Generator_ColumnVarNameInTable="columnadatetime" msprop:Generator_ColumnPropNameInRow="adatetime" msprop:Generator_ColumnPropNameInTable="adatetimeColumn" msprop:Generator_UserColumnName="adatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="orgarrivalstatus" msprop:Generator_ColumnVarNameInTable="columnorgarrivalstatus" msprop:Generator_ColumnPropNameInRow="orgarrivalstatus" msprop:Generator_ColumnPropNameInTable="orgarrivalstatusColumn" msprop:Generator_UserColumnName="orgarrivalstatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

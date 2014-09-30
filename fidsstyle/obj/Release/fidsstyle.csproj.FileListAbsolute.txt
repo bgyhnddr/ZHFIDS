@@ -1,0 +1,11 @@
+F:\开发\MYSQL\ZHFIDS\fidsstyle\bin\Release\fidsstyle.dll
+F:\开发\MYSQL\ZHFIDS\fidsstyle\bin\Release\fidsstyle.pdb
+F:\开发\MYSQL\ZHFIDS\fidsstyle\bin\Release\global.dll
+F:\开发\MYSQL\ZHFIDS\fidsstyle\bin\Release\data.dll
+F:\开发\MYSQL\ZHFIDS\fidsstyle\bin\Release\Newtonsoft.Json.dll
+F:\开发\MYSQL\ZHFIDS\fidsstyle\bin\Release\global.pdb
+F:\开发\MYSQL\ZHFIDS\fidsstyle\bin\Release\data.pdb
+F:\开发\MYSQL\ZHFIDS\fidsstyle\bin\Release\global.XmlSerializers.dll
+F:\开发\MYSQL\ZHFIDS\fidsstyle\obj\Release\fidsstyle.csprojResolveAssemblyReference.cache
+F:\开发\MYSQL\ZHFIDS\fidsstyle\obj\Release\fidsstyle.dll
+F:\开发\MYSQL\ZHFIDS\fidsstyle\obj\Release\fidsstyle.pdb

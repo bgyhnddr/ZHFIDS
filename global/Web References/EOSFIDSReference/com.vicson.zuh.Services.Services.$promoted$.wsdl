@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="http://www.primeton.com/com.vicson.zuh.Services.Services/$promoted$.Services" xmlns:ns0="http://www.primeton.com/com.vicson.zuh/com/vicson/zuh/Services" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" name="com.vicson.zuh.Services.Services.$promoted$.Services" targetNamespace="http://www.primeton.com/com.vicson.zuh.Services.Services/$promoted$.Services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://www.primeton.com/com.vicson.zuh/com/vicson/zuh/Services" location="/zhjc/Services?wsdl=com/vicson/zuh/Services.wsdl" />
+  <wsdl:types />
+  <wsdl:binding name="ServicesBinding" type="ns0:Services">
+    <soap11:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAbnormalCause">
+      <soap11:operation soapAction="" />
+      <wsdl:input>
+        <soap11:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap11:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAircraftModel">
+      <soap11:operation soapAction="" />
+      <wsdl:input>
+        <soap11:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap11:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAirlines">
+      <soap11:operation soapAction="" />
+      <wsdl:input>
+        <soap11:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap11:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAirports">
+      <soap11:operation soapAction="" />
+      <wsdl:input>
+        <soap11:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap11:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDictEntry">
+      <soap11:operation soapAction="" />
+      <wsdl:input>
+        <soap11:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap11:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDetails">
+      <soap11:operation soapAction="" />
+      <wsdl:input>
+        <soap11:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap11:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDynamic">
+      <soap11:operation soapAction="" />
+      <wsdl:input>
+        <soap11:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap11:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDynamicSplitTime">
+      <soap11:operation soapAction="" />
+      <wsdl:input>
+        <soap11:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap11:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicesService">
+    <wsdl:port name="ServicesPort" binding="tns:ServicesBinding">
+      <soap11:address location="http://192.168.0.147:8080/zhjc/Services" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

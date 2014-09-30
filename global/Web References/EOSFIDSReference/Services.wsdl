@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.primeton.com/com.vicson.zuh/com/vicson/zuh/Services" xmlns:eos="http://www.primeton.com/eos6" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" eos:displayName="Services" targetNamespace="http://www.primeton.com/com.vicson.zuh/com/vicson/zuh/Services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <eos:Description />
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.primeton.com/com.vicson.zuh/com/vicson/zuh/Services">
+      <xsd:element name="getAbnormalCause">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="lastRequestTime" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAbnormalCauseOutMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nResult" nillable="true" type="xsd:int" />
+            <xsd:element name="errMsg" nillable="true" type="xsd:string" />
+            <xsd:element name="outStr" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAircraftModel">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="modifyTime" nillable="true" type="xsd:dateTime" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAircraftModelOutMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nResult" nillable="true" type="xsd:int" />
+            <xsd:element name="errMsg" nillable="true" type="xsd:string" />
+            <xsd:element name="outStr" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAirlines">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getAirlinesOutMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nResult" nillable="true" type="xsd:int" />
+            <xsd:element name="errMsg" nillable="true" type="xsd:string" />
+            <xsd:element name="outStr" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAirports">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getAirportsOutMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nResult" nillable="true" type="xsd:int" />
+            <xsd:element name="errMsg" nillable="true" type="xsd:string" />
+            <xsd:element name="outStr" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDictEntry">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="dictTypeId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDictEntryOutMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="outStr" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getFlightDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="dateStr" nillable="true" type="xsd:string" />
+            <xsd:element name="lastRequestTime" nillable="true" type="xsd:dateTime" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getFlightDetailsOutMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nResult" nillable="true" type="xsd:int" />
+            <xsd:element name="errMsg" nillable="true" type="xsd:string" />
+            <xsd:element name="outStr" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getFlightDynamic">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="dateStr" nillable="true" type="xsd:string" />
+            <xsd:element name="lastModifyTime" nillable="true" type="xsd:dateTime" />
+            <xsd:element name="flightCode" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getFlightDynamicOutMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nResult" nillable="true" type="xsd:int" />
+            <xsd:element name="errMsg" nillable="true" type="xsd:string" />
+            <xsd:element name="outStr" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getFlightDynamicSplitTime">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getFlightDynamicSplitTimeOutMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="outStr" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAirportsOutMsg">
+    <wsdl:part name="parameters" element="tns:getAirportsOutMsg" />
+  </wsdl:message>
+  <wsdl:message name="getAircraftModelInMsg">
+    <wsdl:part name="parameters" element="tns:getAircraftModel" />
+  </wsdl:message>
+  <wsdl:message name="getDictEntryInMsg">
+    <wsdl:part name="parameters" element="tns:getDictEntry" />
+  </wsdl:message>
+  <wsdl:message name="getFlightDynamicInMsg">
+    <wsdl:part name="parameters" element="tns:getFlightDynamic" />
+  </wsdl:message>
+  <wsdl:message name="getFlightDynamicOutMsg">
+    <wsdl:part name="parameters" element="tns:getFlightDynamicOutMsg" />
+  </wsdl:message>
+  <wsdl:message name="getAbnormalCauseInMsg">
+    <wsdl:part name="parameters" element="tns:getAbnormalCause" />
+  </wsdl:message>
+  <wsdl:message name="getAirportsInMsg">
+    <wsdl:part name="parameters" element="tns:getAirports" />
+  </wsdl:message>
+  <wsdl:message name="getDictEntryOutMsg">
+    <wsdl:part name="parameters" element="tns:getDictEntryOutMsg" />
+  </wsdl:message>
+  <wsdl:message name="getAircraftModelOutMsg">
+    <wsdl:part name="parameters" element="tns:getAircraftModelOutMsg" />
+  </wsdl:message>
+  <wsdl:message name="getAirlinesOutMsg">
+    <wsdl:part name="parameters" element="tns:getAirlinesOutMsg" />
+  </wsdl:message>
+  <wsdl:message name="getFlightDetailsOutMsg">
+    <wsdl:part name="parameters" element="tns:getFlightDetailsOutMsg" />
+  </wsdl:message>
+  <wsdl:message name="getAirlinesInMsg">
+    <wsdl:part name="parameters" element="tns:getAirlines" />
+  </wsdl:message>
+  <wsdl:message name="getFlightDynamicSplitTimeOutMsg">
+    <wsdl:part name="parameters" element="tns:getFlightDynamicSplitTimeOutMsg" />
+  </wsdl:message>
+  <wsdl:message name="getFlightDetailsInMsg">
+    <wsdl:part name="parameters" element="tns:getFlightDetails" />
+  </wsdl:message>
+  <wsdl:message name="getFlightDynamicSplitTimeInMsg">
+    <wsdl:part name="parameters" element="tns:getFlightDynamicSplitTime" />
+  </wsdl:message>
+  <wsdl:message name="getAbnormalCauseOutMsg">
+    <wsdl:part name="parameters" element="tns:getAbnormalCauseOutMsg" />
+  </wsdl:message>
+  <wsdl:portType name="Services">
+    <wsdl:operation name="getAbnormalCause">
+      <eos:input>
+        <eos:part description="?????????????????????????????????:yyyy-MM-dd HH:mm:ss" isArray="false" name="lastRequestTime" xsdType="String" />
+      </eos:input>
+      <eos:output>
+        <eos:part description="????????????,0:??????;??????0:??????;??????0:??????" isArray="false" name="nResult" xsdType="Int" />
+        <eos:part description="?????????????????????" isArray="false" name="errMsg" xsdType="String" />
+        <eos:part description="????????????????????????" isArray="false" name="outStr" xsdType="String" />
+      </eos:output>
+      <wsdl:input message="tns:getAbnormalCauseInMsg" />
+      <wsdl:output message="tns:getAbnormalCauseOutMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="getAircraftModel">
+      <eos:input>
+        <eos:part description="????????????" isArray="false" name="modifyTime" xsdType="Date" />
+      </eos:input>
+      <eos:output>
+        <eos:part description="???????????????0:??????;-1??????." isArray="false" name="nResult" xsdType="Int" />
+        <eos:part description="????????????" isArray="false" name="errMsg" xsdType="String" />
+        <eos:part description="????????????" isArray="false" name="outStr" xsdType="String" />
+      </eos:output>
+      <wsdl:input message="tns:getAircraftModelInMsg" />
+      <wsdl:output message="tns:getAircraftModelOutMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="getAirlines">
+      <eos:output>
+        <eos:part description="????????????,0:??????;??????0:??????;??????0:??????" isArray="false" name="nResult" xsdType="Int" />
+        <eos:part description="?????????????????????" isArray="false" name="errMsg" xsdType="String" />
+        <eos:part description="????????????????????????" isArray="false" name="outStr" xsdType="String" />
+      </eos:output>
+      <wsdl:input message="tns:getAirlinesInMsg" />
+      <wsdl:output message="tns:getAirlinesOutMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="getAirports">
+      <eos:output>
+        <eos:part description="????????????,0:??????;??????0:??????;??????0:??????" isArray="false" name="nResult" xsdType="Int" />
+        <eos:part description="?????????????????????" isArray="false" name="errMsg" xsdType="String" />
+        <eos:part description="??????????????????" isArray="false" name="outStr" xsdType="String" />
+      </eos:output>
+      <wsdl:input message="tns:getAirportsInMsg" />
+      <wsdl:output message="tns:getAirportsOutMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="getDictEntry">
+      <eos:input>
+        <eos:part description="???????????????" isArray="false" name="dictTypeId" xsdType="String" />
+      </eos:input>
+      <eos:output>
+        <eos:part description="?????????????????????" isArray="false" name="outStr" xsdType="String" />
+      </eos:output>
+      <wsdl:input message="tns:getDictEntryInMsg" />
+      <wsdl:output message="tns:getDictEntryOutMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDetails">
+      <eos:input>
+        <eos:part description="???????????????:yyyy-MM-dd" isArray="false" name="dateStr" xsdType="String" />
+        <eos:part description="?????????????????????????????????:yyyy-MM-dd HH:mm:ss" isArray="false" name="lastRequestTime" xsdType="Date" />
+      </eos:input>
+      <eos:output>
+        <eos:part description="???????????????0:??????;-1??????." isArray="false" name="nResult" xsdType="Int" />
+        <eos:part description="????????????" isArray="false" name="errMsg" xsdType="String" />
+        <eos:part description="????????????" isArray="false" name="outStr" xsdType="String" />
+      </eos:output>
+      <wsdl:input message="tns:getFlightDetailsInMsg" />
+      <wsdl:output message="tns:getFlightDetailsOutMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDynamic">
+      <eos:input>
+        <eos:part description="???????????????:yyyy-MM-dd" isArray="false" name="dateStr" xsdType="String" />
+        <eos:part description="????????????????????????" isArray="false" name="lastModifyTime" xsdType="Date" />
+        <eos:part description="?????????" isArray="false" name="flightCode" xsdType="String" />
+      </eos:input>
+      <eos:output>
+        <eos:part description="???????????????0:??????;-1??????." isArray="false" name="nResult" xsdType="Int" />
+        <eos:part description="????????????" isArray="false" name="errMsg" xsdType="String" />
+        <eos:part description="??????????????????" isArray="false" name="outStr" xsdType="String" />
+      </eos:output>
+      <wsdl:input message="tns:getFlightDynamicInMsg" />
+      <wsdl:output message="tns:getFlightDynamicOutMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDynamicSplitTime">
+      <eos:output>
+        <eos:part description="?????????????????????????????????" isArray="false" name="outStr" xsdType="String" />
+      </eos:output>
+      <wsdl:input message="tns:getFlightDynamicSplitTimeInMsg" />
+      <wsdl:output message="tns:getFlightDynamicSplitTimeOutMsg" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicesSOAPBinding" type="tns:Services">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAbnormalCause">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAircraftModel">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAirlines">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAirports">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDictEntry">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDetails">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDynamic">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFlightDynamicSplitTime">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Services">
+    <wsdl:port name="ServicesSOAP" binding="tns:ServicesSOAPBinding">
+      <wsdlsoap:address location="http://127.0.0.1:8080/eos-default/Services" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

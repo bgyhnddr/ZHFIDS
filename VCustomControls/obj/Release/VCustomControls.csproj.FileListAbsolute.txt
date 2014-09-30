@@ -1,0 +1,5 @@
+F:\开发\MYSQL\ZHFIDS\VCustomControls\bin\Release\VCustomControls.dll
+F:\开发\MYSQL\ZHFIDS\VCustomControls\bin\Release\VCustomControls.pdb
+F:\开发\MYSQL\ZHFIDS\VCustomControls\obj\Release\VCustomControls.csprojResolveAssemblyReference.cache
+F:\开发\MYSQL\ZHFIDS\VCustomControls\obj\Release\VCustomControls.dll
+F:\开发\MYSQL\ZHFIDS\VCustomControls\obj\Release\VCustomControls.pdb
