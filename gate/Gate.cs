@@ -27,7 +27,9 @@ namespace data
         private DataSetGateTableAdapters.GateTableAdapter GateAdapter = new DataSetGateTableAdapters.GateTableAdapter();
         private List<Image> ADList = new List<Image>();
         private FontStyle fontStyle = FontStyle.Regular;
-        private List<DataSetGate.GateRow> gateList = new List<DataSetGate.GateRow>();
+        private List<DataSetGate.GateRow> GateList = new List<DataSetGate.GateRow>();
+        private System.Windows.Forms.Timer LTimer;
+        private System.Windows.Forms.Timer ADTimer;
 
         public Gate()
         {
@@ -35,6 +37,7 @@ namespace data
             filetransfer.FileIO.StartFileListen(this, new filetransfer.FileIO.FinishHandle(() =>
             {
                 global.Function.InitLogo();
+                pictureBoxMark.GetPictureList(global.Variable.IMAGEFolder);
             }));
             global.Function.CreateAccessTimer(AccessTimer);
         }
@@ -52,6 +55,18 @@ namespace data
                     ADList.Add(Image.FromFile(file.FullName));
                 }
             }
+            if (ADTimer != null)
+            {
+                ADTimer.Stop();
+            }
+            SetAD();
+            ADTimer = new System.Windows.Forms.Timer();
+            ADTimer.Interval = global.Variable.ADInterval * 1000;
+            ADTimer.Tick += new EventHandler((o, e) =>
+            {
+                SetAD();
+            });
+            ADTimer.Start();
         }
 
         private void SetCSS()
@@ -94,7 +109,7 @@ namespace data
         {
             try
             {
-                global.Function.CreateErrorImage(pictureBoxMark);
+                pictureBoxMark.GetPictureList(global.Variable.IMAGEFolder);
                 global.Function.InitLogo();
                 global.Function.InitColor();
                 InitAD();
@@ -105,7 +120,7 @@ namespace data
             }
             catch
             {
-                pictureBoxMark.Visible = true;
+                SetMask(true);
             }
         }
 
@@ -114,11 +129,11 @@ namespace data
             string where = " WHERE ";
             #region 提前起飞后显示时间设置
             where += "(";
-            where += string.Format("timediff(orderTime,now())<'{0:D2}:00:00'", preHour);
+            where += string.Format("timediff(orderTime,now())<'{0}'", new TimeSpan(0, preHour, 0).ToString());
             where += " AND ";
             where += string.Format("case when atd='' then true else timediff(now(),adatetime)<'{0}' END", new TimeSpan(0, afterMin, 0).ToString());
             where += " AND ";
-            where += string.Format("gate='{0}'", global.Variable.GATE);
+            where += string.Format("(locate('{0}', gate) > 0)", global.Variable.GATE);
             where += ")";
             #endregion
             where += string.Format(" limit {0},{1}", currentPage * perPage, perPage);
@@ -197,6 +212,25 @@ namespace data
 
         private string EditRemark(DataSetGate.GateRow row)
         {
+
+            if (row.gate.IndexOf(">") >= 0)
+            {
+                if (row.gate.Substring(0, row.gate.IndexOf(">")) == global.Variable.GATE)
+                {
+                    LTimer = new System.Windows.Forms.Timer();
+                    LTimer.Tick += new EventHandler((o, e) =>
+                    {
+                        RemarkText = string.Format("Change to Gate {0}", row.gate.Substring(row.gate.IndexOf(">") + 1));
+                        panelTips.Refresh();
+                        LTimer.Stop();
+                    });
+                    LTimer.Interval = UpdateInterval * 1000 / 2;
+                    LTimer.Start();
+                    RemarkTextColor = Color.Red;
+                    return string.Format("现改为{0}号登机口", row.gate.Substring(row.gate.IndexOf(">") + 1));
+                }
+            }
+
             var returnString = row.departstatus + row.en_departstatus;
 
             if (returnString.IndexOf("延误") >= 0)
@@ -223,18 +257,12 @@ namespace data
             }
 
             RemarkTextColor = global.Function.GetColor(row.orgdepartstatus);
-
             return returnString;
         }
 
         private void SetAD()
         {
-            if (CurrentADPage >= ADList.Count)
-            {
-                CurrentADPage = 0;
-            }
-            panelAD.BackgroundImage = ADList[CurrentADPage];
-            CurrentADPage += 1;
+            panelAD.Refresh();
         }
 
         private void bgwGate_DoWork(object sender, DoWorkEventArgs e)
@@ -250,19 +278,19 @@ namespace data
                 {
                     try
                     {
-                        int preHour, afterMIN, updateInterval;
+                        int preHour, afterMIN;
                         bool showError;
-                        GetConfig(out updateInterval, out preHour, out afterMIN, out showError);
+                        GetConfig(out preHour, out afterMIN, out showError);
                         RefreshHandle refresh = new RefreshHandle(() =>
                         {
-                            if (gateList.Count == 0)
+                            if (GateList.Count == 0)
                             {
                                 GetTableList(GetGateTable(ref CurrentPage, 1, preHour, afterMIN)); 
                             }
                             DataSetGate.GateRow row = null;
-                            if (gateList.Count > 0)
+                            if (GateList.Count > 0)
                             {
-                                var tempRow = gateList[0];
+                                var tempRow = GateList[0];
                                 row = GateTable.NewGateRow();
                                 row.flight = tempRow.flight;
                                 row.std = tempRow.std;
@@ -270,27 +298,30 @@ namespace data
                                 row.atd = tempRow.atd;
                                 row.tovia = tempRow.tovia;
                                 row.en_tovia = tempRow.en_tovia;
+                                row.gate = tempRow.gate;
                                 row.departstatus = tempRow.departstatus;
                                 row.en_departstatus = tempRow.en_departstatus;
                                 row.departoutward = tempRow.departoutward;
                                 row.departoutward_en = tempRow.departoutward_en;
                                 row.orgdepartstatus = tempRow.orgdepartstatus;
+                                SetValueByRow(row);
                             }
-                            SetValueByRow(row);
-                            SetAD();
 
                             global.Function.CountErrorTime();
-                            pictureBoxMark.Visible = (gateList.Count == 0) || (global.Variable.ERRORTIMECOUNT > global.Const.CountErrorTimeLimit);
-                            gateList.RemoveAt(0);
+                            SetMask(GateList.Count == 0 || (global.Variable.ERRORTIMECOUNT > global.Const.CountErrorTimeLimit), GateList.Count == 0);
+                            if (GateList.Count > 0)
+                            {
+                                GateList.RemoveAt(0);
+                            }
                         });
                         this.Invoke(refresh);
-                        Thread.Sleep(updateInterval * 1000);
+                        Thread.Sleep(UpdateInterval * 1000);
                     }
                     catch (Exception ex)
                     {
                         RefreshHandle refresh = new RefreshHandle(() =>
                         {
-                            pictureBoxMark.Visible = true;
+                            SetMask(true);
                         });
                         this.Invoke(refresh);
                         Thread.Sleep(3000);
@@ -302,9 +333,15 @@ namespace data
             }
         }
 
+        private void SetMask(bool visible, bool black = false)
+        {
+            pictureBoxMark.SetBlackMask(black);
+            pictureBoxMark.Visible = visible;
+        }
+
         private void GetTableList(DataSetGate.GateDataTable gate)
         {
-            gateList.Clear();
+            GateList.Clear();
             if (gate.Count > 0)
             {
                 foreach (var flight in gate[0].flight.Split(','))
@@ -318,29 +355,30 @@ namespace data
                         row.atd = gate[0].atd;
                         row.tovia = gate[0].tovia;
                         row.en_tovia = gate[0].en_tovia;
+                        row.gate = gate[0].gate;
                         row.departstatus = gate[0].departstatus;
                         row.en_departstatus = gate[0].en_departstatus;
                         row.departoutward = gate[0].departoutward;
                         row.departoutward_en = gate[0].departoutward_en;
                         row.orgdepartstatus = gate[0].orgdepartstatus;
-                        gateList.Add(row);
+                        GateList.Add(row);
                     }
                 }
             }
         }
 
-        private void GetConfig(out int updateInterval, out int preHour, out int afterMin, out bool showError)
+        private void GetConfig(out int preHour, out int afterMin, out bool showError)
         {
             var row = data.FIDSAdapter.SubsystemAdapter.GetData().Where(o => o.code == Enum.GetName(typeof(global.SubsystemType), global.SubsystemType.gate)).ToArray();
             if (row.Length > 0)
             {
-                updateInterval = row[0].updateinterval;
+                UpdateInterval = row[0].updateinterval;
                 preHour = row[0].advance;
                 afterMin = row[0].delay;
             }
             else
             {
-                updateInterval = 7;
+                UpdateInterval = 7;
                 preHour = 4;
                 afterMin = 15;
             }
@@ -413,7 +451,6 @@ namespace data
                 if (DateTime.TryParseExact(time, "HHmm", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out dateTime))
                 {
                     time = dateTime.ToString("HH:mm");
-
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Far;
                     stringFormat.LineAlignment = StringAlignment.Center;
@@ -422,18 +459,17 @@ namespace data
                     var size = e.Graphics.MeasureString("计划STDXX:XX ", font);
                     var remarkSize = e.Graphics.MeasureString(remark, font);
                     var rect = new Rectangle(e.ClipRectangle.X, e.ClipRectangle.Y, (int)(size.Width) + 5, panelTips.Height);
+
                     e.Graphics.DrawString("计划STD" + time,
                                 font,
                                 new SolidBrush(Color.White),
                                 rect,
                                 stringFormat);
-
-
-                    var remarkRect = new Rectangle(e.ClipRectangle.X + rect.Width, e.ClipRectangle.Y, panelTips.Width - (int)(size.Width * 1.1), panelTips.Height);
+                    
                     e.Graphics.DrawString(RemarkText,
                                 font,
                                 new SolidBrush(RemarkTextColor),
-                                remarkRect,
+                                e.ClipRectangle,
                                 stringFormat);
                 }
             }
@@ -475,6 +511,23 @@ namespace data
             {
             }
             
+        }
+
+        private void panelAD_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                if (CurrentADPage >= ADList.Count)
+                {
+                    CurrentADPage = 0;
+                }
+                e.Graphics.DrawImage(ADList[CurrentADPage], e.ClipRectangle);
+                CurrentADPage += 1;
+            }
+            catch
+            {
+
+            }
         }
     }
 }

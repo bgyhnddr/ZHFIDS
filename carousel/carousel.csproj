@@ -119,6 +119,10 @@
       <Project>{40070301-881B-4160-BCCF-6D97152FBDC3}</Project>
       <Name>global</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VCustomControls\VCustomControls.csproj">
+      <Project>{b7a203f9-6ff0-40d0-b31e-b8967b924a9b}</Project>
+      <Name>VCustomControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -291,7 +291,7 @@
             this.dgvDynamicDeparture.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDynamicDeparture.Size = new System.Drawing.Size(747, 339);
             this.dgvDynamicDeparture.TabIndex = 2;
-            this.dgvDynamicDeparture.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDynamic_CellMouseDoubleClick);
+            this.dgvDynamicDeparture.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDynamicDeparture_CellMouseDoubleClick);
             this.dgvDynamicDeparture.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDynamicDeparture_DataBindingComplete);
             this.dgvDynamicDeparture.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvDynamicDeparture_KeyDown);
             // 
@@ -430,7 +430,7 @@
             // manual
             // 
             this.manual.DataPropertyName = "manual";
-            this.manual.HeaderText = "手动编辑";
+            this.manual.HeaderText = "冻结数据";
             this.manual.Name = "manual";
             this.manual.ReadOnly = true;
             this.manual.Width = 59;
@@ -717,7 +717,7 @@
             // dataGridViewCheckBoxColumn1
             // 
             this.dataGridViewCheckBoxColumn1.DataPropertyName = "manual";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "手动编辑";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "冻结数据";
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             this.dataGridViewCheckBoxColumn1.Width = 59;
@@ -787,6 +787,7 @@
             this.tbArrivalFlightFilter.Name = "tbArrivalFlightFilter";
             this.tbArrivalFlightFilter.Size = new System.Drawing.Size(100, 21);
             this.tbArrivalFlightFilter.TabIndex = 0;
+            this.tbArrivalFlightFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbArrivalFlightFilter_KeyPress);
             // 
             // label4
             // 
@@ -1091,6 +1092,17 @@
         private System.Windows.Forms.Button btndeleteremarkinfo;
         private System.Windows.Forms.Button btneditremark;
         private System.Windows.Forms.Button btnremarkadd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn remark_code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn color;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn errorline;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departure_cn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departure_en;
+        private System.Windows.Forms.DataGridViewTextBoxColumn guide_cn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn guide_en;
+        private System.Windows.Forms.DataGridViewTextBoxColumn arrival_cn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn arrival_en;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gate_cn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gate_en;
         private System.Windows.Forms.DataGridViewTextBoxColumn flightdynamicid;
         private System.Windows.Forms.DataGridViewTextBoxColumn flight;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastmodifytime;
@@ -1126,16 +1138,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn arrivaloutward_en;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn arrivaldate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remark_code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn color;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn errorline;
-        private System.Windows.Forms.DataGridViewTextBoxColumn departure_cn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn departure_en;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guide_cn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guide_en;
-        private System.Windows.Forms.DataGridViewTextBoxColumn arrival_cn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn arrival_en;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gate_cn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gate_en;
     }
 }

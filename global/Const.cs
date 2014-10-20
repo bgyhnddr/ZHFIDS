@@ -7,6 +7,8 @@ namespace global
 {
     public partial class Const
     {
+        public const byte Shutdown = (byte)3;
+        public const byte Reboot = (byte)2;
 
         public const string ZUH = "ZUH";
         public const string Plan = "Plan";
@@ -16,6 +18,7 @@ namespace global
         public const string PASSWORDKEY = "password";
         public const string ROWCOUNT = "rowcount";
         public const string GATE = "gate";
+        public const string ADInterval = "adinterval";
         public const string CSSSTYLE = "cssstyle";
         public const string CAROUSELD = "carouseld";
 
@@ -50,8 +53,9 @@ namespace global
         public const string PLANTODYNAMIC = "生成动态";
         public const string CHANGEFORMERROR = "切换窗口出错";
 
+        public const string JSON_propertyCode = "propertyCode";
         public const string JSON_flightCode = "flightCode";
-        public const string JSON_SHARE = "JSON_SHARE"; 
+        public const string JSON_SHARE = "SHARE"; 
         public const string JSON_flightDynamicId = "flightDynamicId";
         public const string JSON_date = "date";
         public const string JSON_FLIGHT = "FLIGHT";
@@ -77,6 +81,7 @@ namespace global
         public const string JSON_counter = "counter";
         public const string JSON_counterArea = "counterArea";
         public const string JSON_boardinGateCode = "boardinGateCode";
+        public const string JSON_alterBoardinGateCode = "alterBoardinGateCode";
         public const string JSON_carouselCode = "carouselCode";
         public const string JSON_arrivalStatusEn = "arrivalStatusEn";
         public const string JSON_arrivalStatusCn = "arrivalStatusCn";

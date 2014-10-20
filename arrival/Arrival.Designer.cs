@@ -37,7 +37,7 @@
             this.AccessTimer = new System.Windows.Forms.Timer(this.components);
             this.bgwArrival = new System.ComponentModel.BackgroundWorker();
             this.lbTime = new System.Windows.Forms.Label();
-            this.pictureBoxMark = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMark = new VCustomControls.CPictureBox();
             this.STA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ICON = new System.Windows.Forms.DataGridViewImageColumn();
             this.FLIGHT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -202,7 +202,7 @@
         private System.Windows.Forms.Timer AccessTimer;
         private System.ComponentModel.BackgroundWorker bgwArrival;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.PictureBox pictureBoxMark;
+        private VCustomControls.CPictureBox pictureBoxMark;
         private System.Windows.Forms.DataGridViewTextBoxColumn STA;
         private System.Windows.Forms.DataGridViewImageColumn ICON;
         private System.Windows.Forms.DataGridViewTextBoxColumn FLIGHT;

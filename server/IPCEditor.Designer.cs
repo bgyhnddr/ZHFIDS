@@ -41,6 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbMAC = new System.Windows.Forms.TextBox();
             this.btnConfirm = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbComments = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epTips)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             // 
             this.tbIP.Location = new System.Drawing.Point(59, 13);
             this.tbIP.Name = "tbIP";
-            this.tbIP.Size = new System.Drawing.Size(100, 21);
+            this.tbIP.Size = new System.Drawing.Size(121, 21);
             this.tbIP.TabIndex = 0;
             this.tbIP.Validating += new System.ComponentModel.CancelEventHandler(this.tbIP_Validating);
             // 
@@ -61,7 +63,7 @@
             // 
             this.tbPort.Location = new System.Drawing.Point(59, 40);
             this.tbPort.Name = "tbPort";
-            this.tbPort.Size = new System.Drawing.Size(100, 21);
+            this.tbPort.Size = new System.Drawing.Size(121, 21);
             this.tbPort.TabIndex = 1;
             this.tbPort.Validating += new System.ComponentModel.CancelEventHandler(this.tbPort_Validating);
             // 
@@ -76,8 +78,9 @@
             // 
             // cbAutoAccess
             // 
+            this.cbAutoAccess.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cbAutoAccess.AutoSize = true;
-            this.cbAutoAccess.Location = new System.Drawing.Point(59, 120);
+            this.cbAutoAccess.Location = new System.Drawing.Point(59, 184);
             this.cbAutoAccess.Name = "cbAutoAccess";
             this.cbAutoAccess.Size = new System.Drawing.Size(72, 16);
             this.cbAutoAccess.TabIndex = 3;
@@ -124,12 +127,13 @@
             // 
             this.tbMAC.Location = new System.Drawing.Point(59, 67);
             this.tbMAC.Name = "tbMAC";
-            this.tbMAC.Size = new System.Drawing.Size(100, 21);
+            this.tbMAC.Size = new System.Drawing.Size(121, 21);
             this.tbMAC.TabIndex = 7;
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(59, 142);
+            this.btnConfirm.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnConfirm.Location = new System.Drawing.Point(59, 206);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(78, 23);
             this.btnConfirm.TabIndex = 9;
@@ -137,12 +141,31 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 123);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "备注";
+            // 
+            // tbComments
+            // 
+            this.tbComments.Location = new System.Drawing.Point(59, 120);
+            this.tbComments.Multiline = true;
+            this.tbComments.Name = "tbComments";
+            this.tbComments.Size = new System.Drawing.Size(121, 52);
+            this.tbComments.TabIndex = 10;
+            // 
             // IPCEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(197, 169);
+            this.ClientSize = new System.Drawing.Size(197, 238);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tbComments);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbMAC);
@@ -178,6 +201,8 @@
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbMAC;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbComments;
 
     }
 }

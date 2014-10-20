@@ -117,6 +117,7 @@ namespace ZHFIDS
                 cbStyle.Text = Variable.CSSSTYLE;
                 tbCarouseld.Text = Variable.CAROUSELD;
                 numRowCount.Value = Variable.RowCount;
+                nbAD.Value = Variable.ADInterval;
                 var rows = data.FIDSAdapter.IPCStatusAdapter.GetData().Where(o => o.ip == tbIP.Text).ToArray();
                 if (rows.Length > 0)
                 {
@@ -124,6 +125,7 @@ namespace ZHFIDS
                     tbMAC.Text = rows[0].mac.ToString();
                     cbSubsystem.SelectedValue = rows[0].subsystem;
                     cbAutoAccess.Checked = rows[0].autoaccess;
+                    tbComments.Text = rows[0].comments;
                 }
             }
             catch (Exception ex)
@@ -145,6 +147,7 @@ namespace ZHFIDS
                 global.Variable.GATE = tbGate.Text;
                 global.Variable.CSSSTYLE = cbStyle.Text;
                 global.Variable.CAROUSELD = tbCarouseld.Text;
+                global.Variable.ADInterval = int.Parse(nbAD.Value.ToString());
                 MySql.Data.MySqlClient.MySqlTransaction tran = null;
                 var adapter = new data.FIDSDatasetTableAdapters.ipcstatusTableAdapter();
                 try
@@ -164,6 +167,7 @@ namespace ZHFIDS
                         row.mac = tbMAC.Text;
                         row.subsystem = cbSubsystem.SelectedValue.ToString();
                         row.autoaccess = cbAutoAccess.Checked;
+                        row.comments = tbComments.Text;
                         table.AddipcstatusRow(row);
                     }
                     else
@@ -174,6 +178,7 @@ namespace ZHFIDS
                         row.mac = tbMAC.Text;
                         row.subsystem = cbSubsystem.SelectedValue.ToString();
                         row.autoaccess= cbAutoAccess.Checked;
+                        row.comments = tbComments.Text;
                     }
 
 
@@ -205,6 +210,7 @@ namespace ZHFIDS
         {
             try
             {
+                var hei = 403;
                 if (!this.IsDisposed)
                 {
                     var selected = (SubsystemType)Enum.Parse(typeof(SubsystemType), cbSubsystem.SelectedValue.ToString());
@@ -213,12 +219,12 @@ namespace ZHFIDS
                         case SubsystemType.server:
                             gbAccount.Visible = true;
                             gbGate.Visible = gbShowSetting.Visible = false;
-                            Height = 342;
+                            Height = hei;
                             break;
                         case SubsystemType.gate:
                             gbAccount.Visible = gbShowSetting.Visible = false;
                             gbGate.Visible = true;
-                            Height = 342;
+                            Height = hei;
                             break;
                         case SubsystemType.departure:
                         case SubsystemType.arrival:
@@ -227,17 +233,17 @@ namespace ZHFIDS
                             gbAccount.Visible = gbGate.Visible = false;
                             gbShowSetting.Visible = true;
                             lbCarouseld.Visible = tbCarouseld.Visible = false;
-                            Height = 342;
+                            Height = hei;
                             break;
                         case SubsystemType.carouseld:
                             gbAccount.Visible = gbGate.Visible = false;
                             gbShowSetting.Visible = true;
                             lbCarouseld.Visible = tbCarouseld.Visible = true;
-                            Height = 342;
+                            Height = hei;
                             break;
                         default:
                             gbAccount.Visible = gbGate.Visible = gbShowSetting.Visible = false;
-                            Height = 262;
+                            Height = hei - 80;
                             break;
                     }
                 }

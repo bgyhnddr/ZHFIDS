@@ -62,6 +62,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Services" />
@@ -173,6 +174,10 @@
     <ProjectReference Include="..\guide\guide.csproj">
       <Project>{8BFB5083-7F9A-4886-81E4-4A95E77A4F25}</Project>
       <Name>guide</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MYSQLTest\MYSQLTest.csproj">
+      <Project>{1898a105-39b1-475b-8af2-e9dcee9384ab}</Project>
+      <Name>MYSQLTest</Name>
     </ProjectReference>
     <ProjectReference Include="..\server\server.csproj">
       <Project>{FD69EC9C-3811-425F-A894-6CB5E62BEE59}</Project>

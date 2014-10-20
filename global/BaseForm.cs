@@ -19,6 +19,7 @@ namespace global
         protected List<ConDouble> FlightsList = new List<ConDouble>();
         protected Graphics DrawGraphics;
         protected delegate void RefreshHandle();
+        protected int UpdateInterval;
 
         public static bool En = true;
 
@@ -32,7 +33,6 @@ namespace global
             DrawGraphics = Graphics.FromHwnd(this.Handle);
 
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.ResizeRedraw, true);
@@ -108,12 +108,13 @@ namespace global
             timer.Enabled = true;
         }
 
-        protected void CreateLanguageTimer(Timer timer, DataGridView grid)
+        protected void CreateLanguageTimer(Timer timer, VCustomControls.ScrollDataGridView grid)
         {
             timer.Tick += new System.EventHandler((sender, e) =>
             {
                 try
                 {
+                    grid.Drawed = false;
                     if (grid != null)
                     {
                         if (ToviaLangList.Count > 0)
@@ -131,9 +132,9 @@ namespace global
                         {
                             RemarkList.ForEach((o) =>
                             {
-                                if (grid[o.point.X, o.point.Y].Value != null)
+                                if (grid["Remark", o.point.Y].Value != null)
                                 {
-                                    grid[o.point.X, o.point.Y].Value = o.hidetext;
+                                    grid["Remark", o.point.Y].Value = o.hidetext;
                                 }
                             });
                         }
@@ -145,11 +146,10 @@ namespace global
                                 if (grid["FLIGHT", o.point.Y].Value != null)
                                 {
                                     grid["FLIGHT", o.point.Y].Value = o.hidetext;
-                                    grid["ICON", o.point.Y].Value = global.Function.GetIcon(o.hidetext.Substring(0,2));
+                                    grid["ICON", o.point.Y].Value = global.Function.GetIcon(o.hidetext.Substring(0, 2));
                                 }
                             });
                         }
-                        grid.Refresh();
                     }
                 }
                 catch

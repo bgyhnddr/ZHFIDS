@@ -42,14 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dglIPCStatus = new VCustomControls.VDataGridView();
-            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subsystem = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.LogoDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ADDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastAccessTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AutoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnAddIPC = new System.Windows.Forms.Button();
@@ -71,6 +63,15 @@
             this.interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnSubsystemEdit = new System.Windows.Forms.Button();
+            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subsystem = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.LogoDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastAccessTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AutoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dglIPCStatus)).BeginInit();
@@ -187,6 +188,7 @@
             this.IP,
             this.Port,
             this.mac,
+            this.comments,
             this.Subsystem,
             this.LogoDate,
             this.ADDate,
@@ -210,78 +212,6 @@
             this.dglIPCStatus.Size = new System.Drawing.Size(826, 401);
             this.dglIPCStatus.TabIndex = 0;
             this.dglIPCStatus.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dglIPCStatus_CellDoubleClick);
-            // 
-            // IP
-            // 
-            this.IP.DataPropertyName = "ip";
-            this.IP.FillWeight = 2F;
-            this.IP.HeaderText = "IP";
-            this.IP.Name = "IP";
-            this.IP.ReadOnly = true;
-            // 
-            // Port
-            // 
-            this.Port.DataPropertyName = "port";
-            this.Port.FillWeight = 1F;
-            this.Port.HeaderText = "端口";
-            this.Port.Name = "Port";
-            this.Port.ReadOnly = true;
-            // 
-            // mac
-            // 
-            this.mac.DataPropertyName = "mac";
-            this.mac.FillWeight = 1F;
-            this.mac.HeaderText = "MAC";
-            this.mac.Name = "mac";
-            this.mac.ReadOnly = true;
-            // 
-            // Subsystem
-            // 
-            this.Subsystem.DataPropertyName = "subsystem";
-            this.Subsystem.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.Subsystem.FillWeight = 2F;
-            this.Subsystem.HeaderText = "子系统";
-            this.Subsystem.Name = "Subsystem";
-            this.Subsystem.ReadOnly = true;
-            this.Subsystem.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Subsystem.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // LogoDate
-            // 
-            this.LogoDate.DataPropertyName = "logodate";
-            this.LogoDate.FillWeight = 2F;
-            this.LogoDate.HeaderText = "Logo日期";
-            this.LogoDate.Name = "LogoDate";
-            this.LogoDate.ReadOnly = true;
-            // 
-            // ADDate
-            // 
-            this.ADDate.DataPropertyName = "addate";
-            this.ADDate.FillWeight = 2F;
-            this.ADDate.HeaderText = "广告日期";
-            this.ADDate.Name = "ADDate";
-            this.ADDate.ReadOnly = true;
-            // 
-            // LastAccessTime
-            // 
-            this.LastAccessTime.DataPropertyName = "lastaccesstime";
-            dataGridViewCellStyle1.Format = "G";
-            dataGridViewCellStyle1.NullValue = null;
-            this.LastAccessTime.DefaultCellStyle = dataGridViewCellStyle1;
-            this.LastAccessTime.FillWeight = 2F;
-            this.LastAccessTime.HeaderText = "最后通讯时间";
-            this.LastAccessTime.Name = "LastAccessTime";
-            this.LastAccessTime.ReadOnly = true;
-            // 
-            // AutoAccess
-            // 
-            this.AutoAccess.DataPropertyName = "autoaccess";
-            this.AutoAccess.FalseValue = "0";
-            this.AutoAccess.FillWeight = 1F;
-            this.AutoAccess.HeaderText = "自动登入";
-            this.AutoAccess.Name = "AutoAccess";
-            this.AutoAccess.ReadOnly = true;
-            this.AutoAccess.TrueValue = "1";
             // 
             // panel3
             // 
@@ -455,7 +385,7 @@
             // advance
             // 
             this.advance.DataPropertyName = "advance";
-            this.advance.HeaderText = "提前显示时间（小时）";
+            this.advance.HeaderText = "提前显示时间（分钟）";
             this.advance.Name = "advance";
             this.advance.ReadOnly = true;
             this.advance.Width = 150;
@@ -495,6 +425,86 @@
             this.btnSubsystemEdit.Text = "编辑";
             this.btnSubsystemEdit.UseVisualStyleBackColor = true;
             this.btnSubsystemEdit.Click += new System.EventHandler(this.btnSubsystemEdit_Click);
+            // 
+            // IP
+            // 
+            this.IP.DataPropertyName = "ip";
+            this.IP.FillWeight = 16.14916F;
+            this.IP.HeaderText = "IP";
+            this.IP.Name = "IP";
+            this.IP.ReadOnly = true;
+            // 
+            // Port
+            // 
+            this.Port.DataPropertyName = "port";
+            this.Port.FillWeight = 8.07458F;
+            this.Port.HeaderText = "端口";
+            this.Port.Name = "Port";
+            this.Port.ReadOnly = true;
+            // 
+            // mac
+            // 
+            this.mac.DataPropertyName = "mac";
+            this.mac.FillWeight = 8.07458F;
+            this.mac.HeaderText = "MAC";
+            this.mac.Name = "mac";
+            this.mac.ReadOnly = true;
+            // 
+            // comments
+            // 
+            this.comments.DataPropertyName = "comments";
+            this.comments.FillWeight = 8.030457F;
+            this.comments.HeaderText = "备注";
+            this.comments.Name = "comments";
+            this.comments.ReadOnly = true;
+            // 
+            // Subsystem
+            // 
+            this.Subsystem.DataPropertyName = "subsystem";
+            this.Subsystem.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Subsystem.FillWeight = 16.14916F;
+            this.Subsystem.HeaderText = "子系统";
+            this.Subsystem.Name = "Subsystem";
+            this.Subsystem.ReadOnly = true;
+            this.Subsystem.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Subsystem.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // LogoDate
+            // 
+            this.LogoDate.DataPropertyName = "logodate";
+            this.LogoDate.FillWeight = 16.14916F;
+            this.LogoDate.HeaderText = "Logo日期";
+            this.LogoDate.Name = "LogoDate";
+            this.LogoDate.ReadOnly = true;
+            // 
+            // ADDate
+            // 
+            this.ADDate.DataPropertyName = "addate";
+            this.ADDate.FillWeight = 16.14916F;
+            this.ADDate.HeaderText = "广告日期";
+            this.ADDate.Name = "ADDate";
+            this.ADDate.ReadOnly = true;
+            // 
+            // LastAccessTime
+            // 
+            this.LastAccessTime.DataPropertyName = "lastaccesstime";
+            dataGridViewCellStyle1.Format = "G";
+            dataGridViewCellStyle1.NullValue = null;
+            this.LastAccessTime.DefaultCellStyle = dataGridViewCellStyle1;
+            this.LastAccessTime.FillWeight = 16.14916F;
+            this.LastAccessTime.HeaderText = "最后通讯时间";
+            this.LastAccessTime.Name = "LastAccessTime";
+            this.LastAccessTime.ReadOnly = true;
+            // 
+            // AutoAccess
+            // 
+            this.AutoAccess.DataPropertyName = "autoaccess";
+            this.AutoAccess.FalseValue = "0";
+            this.AutoAccess.FillWeight = 8.07458F;
+            this.AutoAccess.HeaderText = "自动登入";
+            this.AutoAccess.Name = "AutoAccess";
+            this.AutoAccess.ReadOnly = true;
+            this.AutoAccess.TrueValue = "1";
             // 
             // Server
             // 
@@ -550,22 +560,23 @@
         private VCustomControls.VDataGridView dgvSubsystem;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnSubsystemEdit;
+        private System.Windows.Forms.Button btnAddIPC;
+        private System.Windows.Forms.Button btnEditIPC;
+        private System.Windows.Forms.Button btnShutdown;
         private System.Windows.Forms.DataGridViewTextBoxColumn code;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn advance;
         private System.Windows.Forms.DataGridViewTextBoxColumn delay;
         private System.Windows.Forms.DataGridViewTextBoxColumn interval;
-        private System.Windows.Forms.Button btnAddIPC;
-        private System.Windows.Forms.Button btnEditIPC;
         private System.Windows.Forms.DataGridViewTextBoxColumn IP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Port;
         private System.Windows.Forms.DataGridViewTextBoxColumn mac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comments;
         private System.Windows.Forms.DataGridViewComboBoxColumn Subsystem;
         private System.Windows.Forms.DataGridViewTextBoxColumn LogoDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ADDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastAccessTime;
         private System.Windows.Forms.DataGridViewCheckBoxColumn AutoAccess;
-        private System.Windows.Forms.Button btnShutdown;
 
     }
 }

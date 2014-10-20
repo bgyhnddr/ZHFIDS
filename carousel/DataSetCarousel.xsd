@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="zh_fidsConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="zh_fidsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.data.Properties.Settings.GlobalReference.Default.zh_fidsConnectionString" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="zh_fidsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="zh_fidsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.data.Properties.Settings.GlobalReference.Default.zh_fidsConnectionString" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CarouselTableAdapter" GeneratorDataComponentClassName="CarouselTableAdapter" Name="Carousel" UserDataComponentName="CarouselTableAdapter">
@@ -12,9 +12,9 @@
               <DbSource ConnectionRef="zh_fidsConnectionString (Settings)" DbObjectName="`zh-fids`.arrival" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT   flight, `from`, en_from, tovia, en_tovia, ata, airlinecode, carousel, `date`, orderTime
+                    <CommandText>SELECT   flight, `from`, en_from, tovia, en_tovia, ata, airlinecode, carousel, `date`, orderTime, orgarrivalstatus
 FROM      arrival
-WHERE   (IFNULL(carousel, '') &lt;&gt; '')</CommandText>
+WHERE   (IFNULL(carousel, '') &lt;&gt; '') AND (orgarrivalstatus = 'Landed')</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -31,6 +31,7 @@ WHERE   (IFNULL(carousel, '') &lt;&gt; '')</CommandText>
               <Mapping SourceColumn="carousel" DataSetColumn="carousel" />
               <Mapping SourceColumn="date" DataSetColumn="date" />
               <Mapping SourceColumn="orderTime" DataSetColumn="orderTime" />
+              <Mapping SourceColumn="orgarrivalstatus" DataSetColumn="orgarrivalstatus" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -42,7 +43,7 @@ WHERE   (IFNULL(carousel, '') &lt;&gt; '')</CommandText>
   <xs:element name="DataSetCarousel" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetCarousel" msprop:Generator_UserDSName="DataSetCarousel">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Carousel" msprop:Generator_TableClassName="CarouselDataTable" msprop:Generator_TableVarName="tableCarousel" msprop:Generator_RowChangedName="CarouselRowChanged" msprop:Generator_TablePropName="Carousel" msprop:Generator_RowDeletingName="CarouselRowDeleting" msprop:Generator_RowChangingName="CarouselRowChanging" msprop:Generator_RowEvHandlerName="CarouselRowChangeEventHandler" msprop:Generator_RowDeletedName="CarouselRowDeleted" msprop:Generator_RowClassName="CarouselRow" msprop:Generator_UserTableName="Carousel" msprop:Generator_RowEvArgName="CarouselRowChangeEvent">
+        <xs:element name="Carousel" msprop:Generator_TableClassName="CarouselDataTable" msprop:Generator_TableVarName="tableCarousel" msprop:Generator_TablePropName="Carousel" msprop:Generator_RowDeletingName="CarouselRowDeleting" msprop:Generator_RowChangingName="CarouselRowChanging" msprop:Generator_RowEvHandlerName="CarouselRowChangeEventHandler" msprop:Generator_RowDeletedName="CarouselRowDeleted" msprop:Generator_UserTableName="Carousel" msprop:Generator_RowChangedName="CarouselRowChanged" msprop:Generator_RowEvArgName="CarouselRowChangeEvent" msprop:Generator_RowClassName="CarouselRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="flight" msprop:Generator_ColumnVarNameInTable="columnflight" msprop:Generator_ColumnPropNameInRow="flight" msprop:Generator_ColumnPropNameInTable="flightColumn" msprop:Generator_UserColumnName="flight">
@@ -109,6 +110,13 @@ WHERE   (IFNULL(carousel, '') &lt;&gt; '')</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="orderTime" msprop:Generator_ColumnVarNameInTable="columnorderTime" msprop:Generator_ColumnPropNameInRow="orderTime" msprop:Generator_ColumnPropNameInTable="orderTimeColumn" msprop:Generator_UserColumnName="orderTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="orgarrivalstatus" msprop:Generator_ColumnVarNameInTable="columnorgarrivalstatus" msprop:Generator_ColumnPropNameInRow="orgarrivalstatus" msprop:Generator_ColumnPropNameInTable="orgarrivalstatusColumn" msprop:Generator_UserColumnName="orgarrivalstatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

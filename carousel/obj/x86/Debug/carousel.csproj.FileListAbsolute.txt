@@ -36,3 +36,5 @@ F:\开发\MYSQL\ZHFIDS\carousel\bin\Debug\fidsstyle.dll
 F:\开发\MYSQL\ZHFIDS\carousel\bin\Debug\fidsstyle.pdb
 F:\开发\MYSQL\ZHFIDS\carousel\obj\x86\Debug\data.Carouseld.resources
 F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\carousel\obj\x86\Debug\data.Carouseld.resources
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\carousel\bin\Debug\VCustomControls.dll
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\carousel\bin\Debug\VCustomControls.pdb

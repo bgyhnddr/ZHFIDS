@@ -27,7 +27,8 @@ namespace data
 
         private void InitValue(string ip)
         {
-            var table = data.FIDSAdapter.IPCStatusAdapter.GetData().Where(o=>o.ip == ip).ToArray();
+            var adapter = new data.FIDSDatasetTableAdapters.ipcstatusTableAdapter();
+            var table = adapter.GetData().Where(o => o.ip == ip).ToArray();
             if (table.Length > 0)
             {
                 tbIP.Text = table[0].ip;
@@ -35,6 +36,7 @@ namespace data
                 tbMAC.Text = table[0].mac;
                 cbSubsystem.SelectedValue = table[0].subsystem;
                 cbAutoAccess.Checked = table[0].autoaccess;
+                tbComments.Text = table[0].comments;
             }
         }
 
@@ -56,6 +58,7 @@ namespace data
                     rows[0].mac = tbMAC.Text;
                     rows[0].subsystem = cbSubsystem.SelectedValue.ToString();
                     rows[0].autoaccess = cbAutoAccess.Checked;
+                    rows[0].comments = tbComments.Text;
                     adapter.Update(rows[0]);
                 }
                 else
@@ -66,6 +69,7 @@ namespace data
                     row.mac = tbMAC.Text;
                     row.subsystem = cbSubsystem.SelectedValue.ToString();
                     row.autoaccess = cbAutoAccess.Checked;
+                    row.comments = tbComments.Text;
                     table.AddipcstatusRow(row);
                     adapter.Update(table);
                 }

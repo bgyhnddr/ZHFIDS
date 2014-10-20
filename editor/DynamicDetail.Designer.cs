@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DynamicDetail));
             this.gbArrival = new System.Windows.Forms.GroupBox();
+            this.cbArrivalErrorEN = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbArrivalError = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tbATA = new System.Windows.Forms.TextBox();
             this.tbETA = new System.Windows.Forms.TextBox();
             this.tbSTA = new System.Windows.Forms.TextBox();
@@ -42,6 +46,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.gbDepart = new System.Windows.Forms.GroupBox();
+            this.cbDepartErrorEN = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbDepartError = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.tbATD = new System.Windows.Forms.TextBox();
             this.tbETD = new System.Windows.Forms.TextBox();
             this.cbDepartStatus = new System.Windows.Forms.ComboBox();
@@ -70,14 +78,7 @@
             this.cbManual = new System.Windows.Forms.CheckBox();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.errorProviderDetail = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cbArrivalError = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbArrivalErrorEN = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbDepartErrorEN = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cbDepartError = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.ttFormat = new System.Windows.Forms.ToolTip(this.components);
             this.gbArrival.SuspendLayout();
             this.gbDepart.SuspendLayout();
             this.gbPublic.SuspendLayout();
@@ -107,6 +108,42 @@
             this.gbArrival.TabStop = false;
             this.gbArrival.Text = "到港信息";
             this.gbArrival.Visible = false;
+            // 
+            // cbArrivalErrorEN
+            // 
+            this.cbArrivalErrorEN.FormattingEnabled = true;
+            this.cbArrivalErrorEN.Location = new System.Drawing.Point(118, 180);
+            this.cbArrivalErrorEN.Name = "cbArrivalErrorEN";
+            this.cbArrivalErrorEN.Size = new System.Drawing.Size(121, 20);
+            this.cbArrivalErrorEN.TabIndex = 15;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 182);
+            this.label10.Margin = new System.Windows.Forms.Padding(5);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 12);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "到港异常英文";
+            // 
+            // cbArrivalError
+            // 
+            this.cbArrivalError.FormattingEnabled = true;
+            this.cbArrivalError.Location = new System.Drawing.Point(118, 154);
+            this.cbArrivalError.Name = "cbArrivalError";
+            this.cbArrivalError.Size = new System.Drawing.Size(121, 20);
+            this.cbArrivalError.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 156);
+            this.label5.Margin = new System.Windows.Forms.Padding(5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "到港异常";
             // 
             // tbATA
             // 
@@ -224,13 +261,50 @@
             this.gbDepart.Text = "离港信息";
             this.gbDepart.Visible = false;
             // 
+            // cbDepartErrorEN
+            // 
+            this.cbDepartErrorEN.FormattingEnabled = true;
+            this.cbDepartErrorEN.Location = new System.Drawing.Point(117, 203);
+            this.cbDepartErrorEN.Name = "cbDepartErrorEN";
+            this.cbDepartErrorEN.Size = new System.Drawing.Size(121, 20);
+            this.cbDepartErrorEN.TabIndex = 23;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 205);
+            this.label12.Margin = new System.Windows.Forms.Padding(5);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(77, 12);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "离港异常英文";
+            // 
+            // cbDepartError
+            // 
+            this.cbDepartError.FormattingEnabled = true;
+            this.cbDepartError.Location = new System.Drawing.Point(117, 177);
+            this.cbDepartError.Name = "cbDepartError";
+            this.cbDepartError.Size = new System.Drawing.Size(121, 20);
+            this.cbDepartError.TabIndex = 21;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 179);
+            this.label15.Margin = new System.Windows.Forms.Padding(5);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 12);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "离港异常";
+            // 
             // tbATD
             // 
             this.tbATD.CausesValidation = false;
             this.tbATD.Location = new System.Drawing.Point(117, 70);
             this.tbATD.Name = "tbATD";
-            this.tbATD.Size = new System.Drawing.Size(49, 21);
+            this.tbATD.Size = new System.Drawing.Size(122, 21);
             this.tbATD.TabIndex = 16;
+            this.ttFormat.SetToolTip(this.tbATD, "HHmm（24小时制）");
             this.tbATD.Validating += new System.ComponentModel.CancelEventHandler(this.Time_Validating);
             // 
             // tbETD
@@ -238,8 +312,9 @@
             this.tbETD.CausesValidation = false;
             this.tbETD.Location = new System.Drawing.Point(117, 43);
             this.tbETD.Name = "tbETD";
-            this.tbETD.Size = new System.Drawing.Size(49, 21);
+            this.tbETD.Size = new System.Drawing.Size(122, 21);
             this.tbETD.TabIndex = 15;
+            this.ttFormat.SetToolTip(this.tbETD, "HHmm（24小时制）");
             this.tbETD.Validating += new System.ComponentModel.CancelEventHandler(this.Time_Validating);
             // 
             // cbDepartStatus
@@ -256,22 +331,24 @@
             this.tbSTD.CausesValidation = false;
             this.tbSTD.Location = new System.Drawing.Point(117, 16);
             this.tbSTD.Name = "tbSTD";
-            this.tbSTD.Size = new System.Drawing.Size(49, 21);
+            this.tbSTD.Size = new System.Drawing.Size(122, 21);
             this.tbSTD.TabIndex = 14;
+            this.ttFormat.SetToolTip(this.tbSTD, "HHmm（24小时制）");
             this.tbSTD.Validating += new System.ComponentModel.CancelEventHandler(this.Time_Validating);
             // 
             // tbGate
             // 
             this.tbGate.Location = new System.Drawing.Point(117, 124);
             this.tbGate.Name = "tbGate";
-            this.tbGate.Size = new System.Drawing.Size(49, 21);
+            this.tbGate.Size = new System.Drawing.Size(122, 21);
             this.tbGate.TabIndex = 18;
+            this.ttFormat.SetToolTip(this.tbGate, "变更登机口显示如：03>04");
             // 
             // tbCounter
             // 
             this.tbCounter.Location = new System.Drawing.Point(117, 97);
             this.tbCounter.Name = "tbCounter";
-            this.tbCounter.Size = new System.Drawing.Size(87, 21);
+            this.tbCounter.Size = new System.Drawing.Size(122, 21);
             this.tbCounter.TabIndex = 17;
             // 
             // label22
@@ -282,7 +359,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(53, 12);
             this.label22.TabIndex = 12;
-            this.label22.Text = "出发状态";
+            this.label22.Text = "离港状态";
             // 
             // label21
             // 
@@ -406,7 +483,7 @@
             // 
             this.tbFlight.Location = new System.Drawing.Point(71, 19);
             this.tbFlight.Name = "tbFlight";
-            this.tbFlight.Size = new System.Drawing.Size(75, 21);
+            this.tbFlight.Size = new System.Drawing.Size(139, 21);
             this.tbFlight.TabIndex = 1;
             this.tbFlight.Validating += new System.ComponentModel.CancelEventHandler(this.NOTNULL_Validating);
             // 
@@ -454,7 +531,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 264);
+            this.label2.Location = new System.Drawing.Point(10, 261);
             this.label2.Margin = new System.Windows.Forms.Padding(5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
@@ -470,7 +547,7 @@
             "不控制",
             "强制显示",
             "强制不显示"});
-            this.cbShowMode.Location = new System.Drawing.Point(226, 260);
+            this.cbShowMode.Location = new System.Drawing.Point(73, 257);
             this.cbShowMode.Margin = new System.Windows.Forms.Padding(5);
             this.cbShowMode.Name = "cbShowMode";
             this.cbShowMode.Size = new System.Drawing.Size(121, 20);
@@ -480,19 +557,19 @@
             // 
             this.cbManual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbManual.AutoSize = true;
-            this.cbManual.Location = new System.Drawing.Point(375, 263);
+            this.cbManual.Location = new System.Drawing.Point(204, 261);
             this.cbManual.Margin = new System.Windows.Forms.Padding(5);
             this.cbManual.Name = "cbManual";
             this.cbManual.Size = new System.Drawing.Size(72, 16);
             this.cbManual.TabIndex = 22;
-            this.cbManual.Text = "手动编辑";
+            this.cbManual.Text = "冻结数据";
             this.cbManual.UseVisualStyleBackColor = true;
             this.cbManual.CheckedChanged += new System.EventHandler(this.cbManual_CheckedChanged);
             // 
             // btnConfirm
             // 
             this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirm.Location = new System.Drawing.Point(455, 259);
+            this.btnConfirm.Location = new System.Drawing.Point(455, 256);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnConfirm.TabIndex = 0;
@@ -505,84 +582,12 @@
             this.errorProviderDetail.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderDetail.ContainerControl = this;
             // 
-            // cbArrivalError
-            // 
-            this.cbArrivalError.FormattingEnabled = true;
-            this.cbArrivalError.Location = new System.Drawing.Point(118, 154);
-            this.cbArrivalError.Name = "cbArrivalError";
-            this.cbArrivalError.Size = new System.Drawing.Size(121, 20);
-            this.cbArrivalError.TabIndex = 13;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 156);
-            this.label5.Margin = new System.Windows.Forms.Padding(5);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "到港异常";
-            // 
-            // cbArrivalErrorEN
-            // 
-            this.cbArrivalErrorEN.FormattingEnabled = true;
-            this.cbArrivalErrorEN.Location = new System.Drawing.Point(118, 180);
-            this.cbArrivalErrorEN.Name = "cbArrivalErrorEN";
-            this.cbArrivalErrorEN.Size = new System.Drawing.Size(121, 20);
-            this.cbArrivalErrorEN.TabIndex = 15;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 182);
-            this.label10.Margin = new System.Windows.Forms.Padding(5);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 12);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "到港异常英文";
-            // 
-            // cbDepartErrorEN
-            // 
-            this.cbDepartErrorEN.FormattingEnabled = true;
-            this.cbDepartErrorEN.Location = new System.Drawing.Point(117, 203);
-            this.cbDepartErrorEN.Name = "cbDepartErrorEN";
-            this.cbDepartErrorEN.Size = new System.Drawing.Size(121, 20);
-            this.cbDepartErrorEN.TabIndex = 23;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(7, 205);
-            this.label12.Margin = new System.Windows.Forms.Padding(5);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 12);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "离港异常英文";
-            // 
-            // cbDepartError
-            // 
-            this.cbDepartError.FormattingEnabled = true;
-            this.cbDepartError.Location = new System.Drawing.Point(117, 177);
-            this.cbDepartError.Name = "cbDepartError";
-            this.cbDepartError.Size = new System.Drawing.Size(121, 20);
-            this.cbDepartError.TabIndex = 21;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 179);
-            this.label15.Margin = new System.Windows.Forms.Padding(5);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(53, 12);
-            this.label15.TabIndex = 20;
-            this.label15.Text = "离港异常";
-            // 
             // DynamicDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(542, 294);
+            this.ClientSize = new System.Drawing.Size(542, 291);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.gbPublic);
             this.Controls.Add(this.gbDepart);
@@ -658,5 +663,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cbDepartError;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ToolTip ttFormat;
     }
 }

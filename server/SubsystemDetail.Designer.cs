@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubsystemDetail));
             this.label1 = new System.Windows.Forms.Label();
             this.lbSubsystem = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -67,7 +68,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(125, 12);
             this.label3.TabIndex = 3;
-            this.label3.Text = "提前显示时间（小时）";
+            this.label3.Text = "提前显示时间（分钟）";
             // 
             // label4
             // 
@@ -148,7 +149,7 @@
             this.Controls.Add(this.lbSubsystem);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = global.Properties.Resources.favicon;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SubsystemDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "子系统编辑";

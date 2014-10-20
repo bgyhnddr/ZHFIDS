@@ -29,6 +29,7 @@ namespace data
                 filetransfer.FileIO.StartFileListen(this, new filetransfer.FileIO.FinishHandle(() =>
                 {
                     global.Function.InitIcon();
+                    pictureBoxMark.GetPictureList(global.Variable.IMAGEFolder);
                 }));
                 global.Function.InitColor();
                 global.Function.CreateAccessTimer(AccessTimer);
@@ -69,7 +70,7 @@ namespace data
                     global.Function.InitIcon();
                 }
                 lbTime.Text = DateTime.Now.ToShortTimeString();
-                global.Function.CreateErrorImage(pictureBoxMark);
+                pictureBoxMark.GetPictureList(global.Variable.IMAGEFolder);
                 Style.SetDepartureGrid(dgvDeparture, lbTime, Height, Width, global.Variable.RowCount, Graphics.FromHwnd(this.Handle));
                 DepartureAdapter.GetData();
                 ViewCommentText = DepartureAdapter.Adapter.SelectCommand.CommandText;
@@ -92,7 +93,7 @@ namespace data
             where += "(";
             #region 提前起飞后显示时间设置
             where += "(";
-            where += string.Format("timediff(orderTime,now())<'{0:D2}:00:00'", preHour);
+            where += string.Format("timediff(orderTime,now())<'{0}'", new TimeSpan(0, preHour, 0).ToString());
             where += " AND ";
             where += string.Format("case when atd='' then true else timediff(now(),adatetime)<'{0}' END", new TimeSpan(0, afterMin, 0).ToString());
             where += ")";
@@ -226,10 +227,28 @@ namespace data
                     flight = flight,
                     tovia = dytovia,
                     counter = row.counter,
-                    gate = row.gate,
+                    gate = row.gate.IndexOf(">") >= 0 ? row.gate.Substring(row.gate.IndexOf(">") + 1) : row.gate,
                     remark = string.Join("", row.departstatus, row.en_departstatus).Trim()
                 };
-                EditRemark(dynamic, row, returnNum);
+
+                EditRemark(dynamic, row);
+
+                if (row.gate.IndexOf(">") >= 0)
+                {
+                    if (string.IsNullOrWhiteSpace(dynamic.remark))
+                    {
+                        dynamic.remark = "登机口变更Gate Change";
+                    }
+                    else
+                    {
+                        RemarkList.Add(new global.ConDouble()
+                        {
+                            point = new Point(dgvDeparture.Columns[REMARK.Name].Index, DepartureList.Count),
+                            showtext = dynamic.remark,
+                            hidetext = "登机口变更Gate Change"
+                        });
+                    }
+                }
 
                 DepartureList.Add(dynamic);
                 returnNum += 1;
@@ -275,11 +294,12 @@ namespace data
                     gate = string.Empty,
                     remark = string.Empty
                 });
+                returnNum += 1;
             }
 
             return returnNum;
         }
-        private void EditRemark(DepartureEntity entity, DataSetDeparture.DepartureRow row,int num)
+        private void EditRemark(DepartureEntity entity, DataSetDeparture.DepartureRow row)
         {
             if (entity.remark.IndexOf("延误") >= 0)
             {
@@ -291,11 +311,11 @@ namespace data
                 {
                     if (string.IsNullOrWhiteSpace(row.departoutward))
                     {
-                        entity.remark = "预计起飞ETD" + row.etd;
+                        entity.remark = "预计起飞ETD" + row.etd.Substring(0, 2) + ":" + row.etd.Substring(2, 2);
                     }
                     else
                     {
-                        entity.remark = row.departoutward + "延误至ETD" + row.etd;
+                        entity.remark = row.departoutward + "延误至ETD" + row.etd.Substring(0, 2) + ":" + row.etd.Substring(2, 2);
                     }
                 }
             }

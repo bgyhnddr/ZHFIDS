@@ -193,7 +193,7 @@ namespace filetransfer
         {
             switch(action)
             {
-                case (byte)2:
+                case global.Const.Reboot:
                     try
                     {
                         //启动本地程序并执行命令
@@ -204,7 +204,7 @@ namespace filetransfer
                         MessageBox.Show(ex.Message);
                     }
                     break;
-                case (byte)3:
+                case global.Const.Shutdown:
                     try
                     {
                         //启动本地程序并执行命令
@@ -260,7 +260,14 @@ namespace filetransfer
                         flag += socket.Receive(imageFileByte, flag, imageFileByte.Length - flag, SocketFlags.None);
                     }
                     Debug.Print(flag.ToString() + " " + imageFileByte.Length);
-                    File.WriteAllBytes(path + "\\" + fileName, imageFileByte);
+                    if (fileName.IndexOf("/") >= 0)
+                    {
+                        File.WriteAllBytes(global.Variable.IMAGEFolder + "\\" + fileName.TrimStart('/'), imageFileByte);
+                    }
+                    else
+                    {
+                        File.WriteAllBytes(path + "\\" + fileName, imageFileByte);
+                    }
                     //发送1表示该文件接收完毕
                     socket.Send(new byte[1] { (byte)1 });
                 }
@@ -311,6 +318,17 @@ namespace filetransfer
                             Thread.Sleep(10);
                             SendFile(socket, files[i]);
                         }
+
+                        mydir = new DirectoryInfo(global.Variable.IMAGEFolder);
+                        files = mydir.GetFiles().Where(o => o.Extension.ToLower() == ".jpg").ToArray();
+                        obj.ReportProgress(0, "准备发送mask文件到" + ipcIP);
+                        for (var i = 0; i < files.Length; i++)
+                        {
+                            obj.ReportProgress((int)((float)(i + 1) / (float)(files.Length) * 100F), "正在发送" + files[i].Name + "到" + ipcIP);
+                            Thread.Sleep(10);
+                            SendFile(socket, files[i], true);
+                        }
+
                         socket.Send(BitConverter.GetBytes(0));
                     }
 
@@ -330,7 +348,7 @@ namespace filetransfer
 
         public static void ControlIPC(string ipcIP, byte action)
         {
-            var message = action == (byte)2 ? global.Const.REBOOT : global.Const.SHUTDOWN;
+            var message = action == global.Const.Reboot ? global.Const.REBOOT : global.Const.SHUTDOWN;
 
             var progressForm = new global.ProgressBar(message);
             progressForm.fidsBackgroundWorker.DoWork += new DoWorkEventHandler((sender, e) =>
@@ -408,7 +426,7 @@ namespace filetransfer
             progressForm.Show();
         }
 
-        private static void SendFile(Socket socket, FileInfo file)
+        private static void SendFile(Socket socket, FileInfo file, bool isMask = false)
         {
             var imageByte = File.ReadAllBytes(file.FullName);
             var fileSizeByte = BitConverter.GetBytes((int)imageByte.Length);
@@ -419,7 +437,7 @@ namespace filetransfer
             socket.Receive(answerByte);
             if (answerByte[0] == (byte)1)
             {
-                var fileNameByte = Encoding.UTF8.GetBytes(file.Name);
+                var fileNameByte = Encoding.UTF8.GetBytes((isMask ? "/" : string.Empty) + file.Name);
                 socket.Send(fileNameByte);
                 socket.Receive(answerByte);
                 if (answerByte[0] == (byte)1)

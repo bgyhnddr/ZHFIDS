@@ -34,3 +34,5 @@ F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\gate\bin\Debug\fidsstyle.dll
 F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\gate\bin\Debug\fidsstyle.pdb
 F:\开发\MYSQL\ZHFIDS\gate\bin\Debug\fidsstyle.dll
 F:\开发\MYSQL\ZHFIDS\gate\bin\Debug\fidsstyle.pdb
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\gate\bin\Debug\VCustomControls.dll
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\gate\bin\Debug\VCustomControls.pdb

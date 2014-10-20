@@ -320,7 +320,19 @@ namespace global
                     dyrow.ata = ata;
                     
                     dyrow.counter = counter.Trim();
-                    dyrow.gate = row[Const.JSON_boardinGateCode] != null ? row[Const.JSON_boardinGateCode].ToString() : string.Empty;
+
+                    var gate = row[Const.JSON_boardinGateCode] != null ? row[Const.JSON_boardinGateCode].ToString() : string.Empty;
+
+                    if (!string.IsNullOrWhiteSpace(gate))
+                    {
+                        var alertGate = row[Const.JSON_alterBoardinGateCode] != null ? row[Const.JSON_alterBoardinGateCode].ToString() : string.Empty;
+                        if(!string.IsNullOrWhiteSpace(alertGate))
+                        {
+                            gate += ">" + alertGate;
+                        }
+                    }
+
+                    dyrow.gate = gate;
                     dyrow.carousel = row[Const.JSON_carouselCode] != null ? row[Const.JSON_carouselCode].ToString() : string.Empty;
                     dyrow.arrivalstatus = (row[Const.JSON_arrivalStatusCn]) != null ? (row[Const.JSON_arrivalStatusEn].ToString() != Const.Plan ? row[Const.JSON_arrivalStatusCn].ToString() : string.Empty) : string.Empty;
                     dyrow.en_arrivalstatus = row[Const.JSON_arrivalStatusEn] != null ? (row[Const.JSON_arrivalStatusEn].ToString() != Const.Plan ? row[Const.JSON_arrivalStatusEn].ToString() : string.Empty) : string.Empty;
@@ -331,7 +343,10 @@ namespace global
                     dyrow.departoutward = row[Const.JSON_departOutwardCn] != null ? row[Const.JSON_departOutwardCn].ToString() : string.Empty;
                     dyrow.departoutward_en = row[Const.JSON_departOutwardEn] != null ? row[Const.JSON_departOutwardEn].ToString() : string.Empty;
                     dyrow.lastmodifytime = DateTime.Parse(row[Const.JSON_lastModifyTime].ToString());
-
+                    if (row[Const.JSON_propertyCode].ToString() == "Q/B")
+                    {
+                        dyrow.forceshow = 2;
+                    }
                     if (dyrow.std == string.Empty && dyrow.sta == string.Empty)
                     {
                         return false;
@@ -449,6 +464,20 @@ namespace global
                 List<string> ids = new List<string>();
                 foreach (var row in ja)
                 {
+                    if (row[Const.JSON_propertyCode] == null)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (row[Const.JSON_propertyCode].ToString() != "W/Z" &&
+                            row[Const.JSON_propertyCode].ToString() != "Z/P" &&
+                            row[Const.JSON_propertyCode].ToString() != "C/B" &&
+                            row[Const.JSON_propertyCode].ToString() != "Q/B")
+                        {
+                            continue;
+                        }
+                    }
                     if (row[Const.JSON_airlinesCode] != null && row[Const.JSON_flightDynamicId] != null && row[Const.JSON_lastModifyTime] != null)
                     {
                         ids.Add(row[Const.JSON_flightDynamicId].ToString());
@@ -478,9 +507,14 @@ namespace global
                             {
                                 dyrow = dyTable.NewflightdynamicRow();
                                 dyrow.manual = false;
+
                                 if (SetDynamicRow(dyrow, row))
                                 {
                                     dyrow.forceshow = 0;
+                                    if (row[Const.JSON_propertyCode].ToString() == "Q/B")
+                                    {
+                                        dyrow.forceshow = 2;
+                                    }
                                     try
                                     {
                                         dyTable.AddflightdynamicRow(dyrow);
@@ -798,14 +832,14 @@ namespace global
 
 
 
-                via = string.Join(" ", row[Const.JSON_TO_BriefCn], via);
-                viaen = string.Join(" ", row[Const.JSON_TO_BriefEn], viaen);
+                via = string.Join(" ", via, row[Const.JSON_TO_BriefCn]);
+                viaen = string.Join(" ", viaen, row[Const.JSON_TO_BriefEn]);
 
 
                 prow.from = row[Const.JSON_FROM_BriefCn].ToString();
                 prow.en_from = row[Const.JSON_FROM_BriefEn].ToString();
-                prow.tovia = via;
-                prow.en_tovia = viaen;
+                prow.tovia = via.Trim();
+                prow.en_tovia = viaen.Trim();
                 prow.flight = row[Const.JSON_FLIGHT].ToString();
                 prow.airlinecode = row[Const.JSON_airlinesCode] != null ? row[Const.JSON_airlinesCode].ToString() : string.Empty;
                 prow.std = std;

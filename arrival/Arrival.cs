@@ -26,6 +26,7 @@ namespace data
                 filetransfer.FileIO.StartFileListen(this, new filetransfer.FileIO.FinishHandle(() =>
                 {
                     global.Function.InitIcon();
+                    pictureBoxMark.GetPictureList(global.Variable.IMAGEFolder);
                 }));
                 global.Function.InitColor();
                 global.Function.CreateAccessTimer(AccessTimer);
@@ -51,7 +52,7 @@ namespace data
                     global.Function.InitIcon();
                 }
                 lbTime.Text = DateTime.Now.ToShortTimeString();
-                global.Function.CreateErrorImage(pictureBoxMark);
+                pictureBoxMark.GetPictureList(global.Variable.IMAGEFolder);
                 Style.SetArrivalGrid(dgvArrival, lbTime, Height, Width, global.Variable.RowCount, Graphics.FromHwnd(this.Handle));
                 ArrivalAdapter.GetData();
                 ViewCommentText = ArrivalAdapter.Adapter.SelectCommand.CommandText;
@@ -123,7 +124,7 @@ namespace data
             where += "(";
             #region 提前起飞后显示时间设置
             where += "(";
-            where += string.Format("timediff(orderTime,now())<'{0:D2}:00:00'", preHour);
+            where += string.Format("timediff(orderTime,now())<'{0}'", new TimeSpan(0, preHour, 0).ToString());
             where += " AND ";
             where += string.Format("case when ata='' then true else timediff(now(),adatetime)<'{0}' END", new TimeSpan(0, afterMin, 0).ToString());
             where += ")";
@@ -280,6 +281,7 @@ namespace data
                     eta = string.Empty,
                     remark = string.Empty
                 });
+                returnNum += 1;
             }
             return returnNum;
         }
@@ -305,17 +307,17 @@ namespace data
             {
                 if (string.IsNullOrWhiteSpace(entity.eta))
                 {
-                    entity.remark = row.departoutward + entity.remark;
+                    entity.remark = row.arrivaloutward + entity.remark;
                 }
                 else
                 {
-                    if (string.IsNullOrWhiteSpace(row.departoutward))
+                    if (string.IsNullOrWhiteSpace(row.arrivaloutward))
                     {
-                        entity.remark = string.Empty;
+
                     }
                     else
                     {
-                        entity.remark = row.departoutward + entity.remark;
+                        entity.remark = row.arrivaloutward + entity.remark;
                     }
                 }
             }

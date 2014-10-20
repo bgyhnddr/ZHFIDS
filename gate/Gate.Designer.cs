@@ -37,7 +37,7 @@
             this.panelAD = new System.Windows.Forms.Panel();
             this.AccessTimer = new System.Windows.Forms.Timer(this.components);
             this.bgwGate = new System.ComponentModel.BackgroundWorker();
-            this.pictureBoxMark = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMark = new VCustomControls.CPictureBox();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMark)).BeginInit();
             this.SuspendLayout();
@@ -90,6 +90,7 @@
             this.panelAD.Name = "panelAD";
             this.panelAD.Size = new System.Drawing.Size(1366, 246);
             this.panelAD.TabIndex = 6;
+            this.panelAD.Paint += new System.Windows.Forms.PaintEventHandler(this.panelAD_Paint);
             // 
             // bgwGate
             // 
@@ -97,6 +98,9 @@
             // 
             // pictureBoxMark
             // 
+            this.pictureBoxMark.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxMark.BackColor = System.Drawing.Color.White;
             this.pictureBoxMark.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxMark.Location = new System.Drawing.Point(0, 0);
@@ -139,6 +143,6 @@
         private System.Windows.Forms.Timer AccessTimer;
         private System.ComponentModel.BackgroundWorker bgwGate;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.PictureBox pictureBoxMark;
+        private VCustomControls.CPictureBox pictureBoxMark;
     }
 }

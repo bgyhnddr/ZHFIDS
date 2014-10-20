@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,7 +18,8 @@ namespace ZHFIDS
             {
                 bool isRuned;
                 System.Threading.Mutex mutex = new System.Threading.Mutex(true, "OnlyRunOneInstance", out isRuned);
-                if (isRuned)
+                var debug = ConfigurationManager.AppSettings["debug"];
+                if (isRuned || debug == "true")
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);

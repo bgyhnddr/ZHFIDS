@@ -44,6 +44,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.gbAccount = new System.Windows.Forms.GroupBox();
             this.gbGate = new System.Windows.Forms.GroupBox();
+            this.nbAD = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.tbGate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -55,9 +57,12 @@
             this.gbShowSetting = new System.Windows.Forms.GroupBox();
             this.tbCarouseld = new System.Windows.Forms.TextBox();
             this.lbCarouseld = new System.Windows.Forms.Label();
+            this.tbComments = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FidsErrorProvider)).BeginInit();
             this.gbAccount.SuspendLayout();
             this.gbGate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbAD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRowCount)).BeginInit();
             this.gbShowSetting.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +98,7 @@
             // btnAccess
             // 
             this.btnAccess.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAccess.Location = new System.Drawing.Point(55, 262);
+            this.btnAccess.Location = new System.Drawing.Point(55, 332);
             this.btnAccess.Name = "btnAccess";
             this.btnAccess.Size = new System.Drawing.Size(75, 23);
             this.btnAccess.TabIndex = 3;
@@ -105,7 +110,7 @@
             // 
             this.cbAutoAccess.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cbAutoAccess.AutoSize = true;
-            this.cbAutoAccess.Location = new System.Drawing.Point(55, 240);
+            this.cbAutoAccess.Location = new System.Drawing.Point(55, 310);
             this.cbAutoAccess.Name = "cbAutoAccess";
             this.cbAutoAccess.Size = new System.Drawing.Size(72, 16);
             this.cbAutoAccess.TabIndex = 4;
@@ -191,6 +196,8 @@
             // 
             // gbGate
             // 
+            this.gbGate.Controls.Add(this.nbAD);
+            this.gbGate.Controls.Add(this.label10);
             this.gbGate.Controls.Add(this.tbGate);
             this.gbGate.Controls.Add(this.label6);
             this.gbGate.Location = new System.Drawing.Point(14, 144);
@@ -201,9 +208,25 @@
             this.gbGate.Text = "登机口";
             this.gbGate.Visible = false;
             // 
+            // nbAD
+            // 
+            this.nbAD.Location = new System.Drawing.Point(102, 49);
+            this.nbAD.Name = "nbAD";
+            this.nbAD.Size = new System.Drawing.Size(43, 21);
+            this.nbAD.TabIndex = 3;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 52);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 12);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "广告频率（秒）";
+            // 
             // tbGate
             // 
-            this.tbGate.Location = new System.Drawing.Point(55, 31);
+            this.tbGate.Location = new System.Drawing.Point(55, 20);
             this.tbGate.Name = "tbGate";
             this.tbGate.Size = new System.Drawing.Size(100, 21);
             this.tbGate.TabIndex = 1;
@@ -211,7 +234,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 34);
+            this.label6.Location = new System.Drawing.Point(8, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 12);
             this.label6.TabIndex = 0;
@@ -302,12 +325,33 @@
             this.lbCarouseld.TabIndex = 3;
             this.lbCarouseld.Text = "转盘号";
             // 
+            // tbComments
+            // 
+            this.tbComments.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tbComments.Location = new System.Drawing.Point(12, 251);
+            this.tbComments.Multiline = true;
+            this.tbComments.Name = "tbComments";
+            this.tbComments.Size = new System.Drawing.Size(167, 49);
+            this.tbComments.TabIndex = 21;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 236);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 12);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "备注";
+            // 
             // FIDS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(191, 306);
+            this.ClientSize = new System.Drawing.Size(191, 367);
+            this.Controls.Add(this.tbComments);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.tbMAC);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -320,9 +364,9 @@
             this.Controls.Add(this.cbSubsystem);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.gbShowSetting);
             this.Controls.Add(this.gbGate);
             this.Controls.Add(this.gbAccount);
+            this.Controls.Add(this.gbShowSetting);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = global::ZHFIDS.Properties.Resources.favicon;
             this.MaximizeBox = false;
@@ -336,6 +380,7 @@
             this.gbAccount.PerformLayout();
             this.gbGate.ResumeLayout(false);
             this.gbGate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbAD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRowCount)).EndInit();
             this.gbShowSetting.ResumeLayout(false);
             this.gbShowSetting.PerformLayout();
@@ -372,5 +417,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbCarouseld;
         private System.Windows.Forms.Label lbCarouseld;
+        private System.Windows.Forms.NumericUpDown nbAD;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbComments;
+        private System.Windows.Forms.Label label11;
     }
 }

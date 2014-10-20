@@ -299,6 +299,8 @@ namespace data {
             
             private global::System.Data.DataColumn columnorderTime;
             
+            private global::System.Data.DataColumn columnorgarrivalstatus;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CarouselDataTable() {
@@ -414,6 +416,14 @@ namespace data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn orgarrivalstatusColumn {
+                get {
+                    return this.columnorgarrivalstatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +459,7 @@ namespace data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CarouselRow AddCarouselRow(string flight, string from, string en_from, string tovia, string en_tovia, string ata, string airlinecode, string carousel, string date, System.DateTime orderTime) {
+            public CarouselRow AddCarouselRow(string flight, string from, string en_from, string tovia, string en_tovia, string ata, string airlinecode, string carousel, string date, System.DateTime orderTime, string orgarrivalstatus) {
                 CarouselRow rowCarouselRow = ((CarouselRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         flight,
@@ -461,7 +471,8 @@ namespace data {
                         airlinecode,
                         carousel,
                         date,
-                        orderTime};
+                        orderTime,
+                        orgarrivalstatus};
                 rowCarouselRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCarouselRow);
                 return rowCarouselRow;
@@ -494,6 +505,7 @@ namespace data {
                 this.columncarousel = base.Columns["carousel"];
                 this.columndate = base.Columns["date"];
                 this.columnorderTime = base.Columns["orderTime"];
+                this.columnorgarrivalstatus = base.Columns["orgarrivalstatus"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +531,8 @@ namespace data {
                 base.Columns.Add(this.columndate);
                 this.columnorderTime = new global::System.Data.DataColumn("orderTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnorderTime);
+                this.columnorgarrivalstatus = new global::System.Data.DataColumn("orgarrivalstatus", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnorgarrivalstatus);
                 this.columnflight.AllowDBNull = false;
                 this.columnflight.MaxLength = 45;
                 this.columnfrom.AllowDBNull = false;
@@ -531,6 +545,7 @@ namespace data {
                 this.columnairlinecode.MaxLength = 2;
                 this.columncarousel.MaxLength = 1;
                 this.columndate.MaxLength = 45;
+                this.columnorgarrivalstatus.MaxLength = 45;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -818,6 +833,22 @@ namespace data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string orgarrivalstatus {
+                get {
+                    try {
+                        return ((string)(this[this.tableCarousel.orgarrivalstatusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Carousel”中列“orgarrivalstatus”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableCarousel.orgarrivalstatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isen_fromNull() {
                 return this.IsNull(this.tableCarousel.en_fromColumn);
             }
@@ -898,6 +929,18 @@ namespace data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetorderTimeNull() {
                 this[this.tableCarousel.orderTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsorgarrivalstatusNull() {
+                return this.IsNull(this.tableCarousel.orgarrivalstatusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetorgarrivalstatusNull() {
+                this[this.tableCarousel.orgarrivalstatusColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1070,6 +1113,7 @@ namespace data.DataSetCarouselTableAdapters {
             tableMapping.ColumnMappings.Add("carousel", "carousel");
             tableMapping.ColumnMappings.Add("date", "date");
             tableMapping.ColumnMappings.Add("orderTime", "orderTime");
+            tableMapping.ColumnMappings.Add("orgarrivalstatus", "orgarrivalstatus");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1087,7 +1131,8 @@ namespace data.DataSetCarouselTableAdapters {
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT   flight, `from`, en_from, tovia, en_tovia, ata, airlinecode, carousel, `d" +
-                "ate`, orderTime\r\nFROM      arrival\r\nWHERE   (IFNULL(carousel, \'\') <> \'\')";
+                "ate`, orderTime, orgarrivalstatus\r\nFROM      arrival\r\nWHERE   (IFNULL(carousel, " +
+                "\'\') <> \'\') AND (orgarrivalstatus = \'Landed\')";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

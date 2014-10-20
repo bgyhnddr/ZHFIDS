@@ -180,21 +180,6 @@ namespace data
             }
         }
 
-        private void dgvDynamic_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            try
-            {
-                if (dgvDynamicDeparture.CurrentRow.Index >= 0)
-                {
-                    OpenDynamicDetail(dgvDynamicDeparture.CurrentRow.Cells[data.FIDSDataTable.FlightDynamic.flightdynamicidColumn.ColumnName].Value.ToString(), true);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string.Format(global.Const.ERROR, ex.Message));
-            }
-        }
-
 
         private void btnDepartureFlightFilterClear_Click(object sender, EventArgs e)
         {
@@ -315,9 +300,19 @@ namespace data
                     {
                         global.Function.SetDynamicIntervalTime(0);
                         RefreshConfig();
+                        obj.ReportProgress(0, "正在准备...");
+                        for (var i = 0; i < 20; i++)
+                        {
+                            obj.ReportProgress(i, string.Empty);
+                            Thread.Sleep(500);
+                        }
                         if (global.Function.GetDynamicByPlan())
                         {
                             obj.ReportProgress(100, "完成");
+                            this.Invoke(new RefreshHandle(() =>
+                            {
+                                RefreshDataSource();
+                            }));
                         }
                         else
                         {
@@ -411,9 +406,12 @@ namespace data
         {
             try
             {
-                if (dgvDynamicDeparture.CurrentRow.Index >= 0)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    OpenDynamicDetail(dgvDynamicDeparture.CurrentRow.Cells[data.FIDSDataTable.FlightDynamic.flightdynamicidColumn.ColumnName].Value.ToString(), true);
+                    if (dgvDynamicDeparture.CurrentRow.Index >= 0)
+                    {
+                        OpenDynamicDetail(dgvDynamicDeparture.CurrentRow.Cells[data.FIDSDataTable.FlightDynamic.flightdynamicidColumn.ColumnName].Value.ToString(), true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -443,9 +441,12 @@ namespace data
         {
             try
             {
-                if (dgvDynamicArrival.CurrentRow.Index >= 0)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    OpenDynamicDetail(dgvDynamicArrival.CurrentRow.Cells[0].Value.ToString(), false);
+                    if (dgvDynamicArrival.CurrentRow.Index >= 0)
+                    {
+                        OpenDynamicDetail(dgvDynamicArrival.CurrentRow.Cells[0].Value.ToString(), false);
+                    }
                 }
             }
             catch (Exception ex)
@@ -552,6 +553,30 @@ namespace data
             if (e.KeyChar == (char)Keys.Enter)
             {
                 FlightDepartureDynamicFliter(tbDepartureFlightFilter.Text);
+            }
+        }
+
+        private void tbArrivalFlightFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                FlightArrivalDynamicFliter(tbArrivalFlightFilter.Text);
+            }
+        }
+
+        private void dgvDynamicDeparture_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            try
+            {
+                if (dgvDynamicDeparture.CurrentRow.Index >= 0)
+                {
+                    OpenDynamicDetail(dgvDynamicDeparture.CurrentRow.Cells[data.FIDSDataTable.FlightDynamic.flightdynamicidColumn.ColumnName].Value.ToString(), true);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format(global.Const.ERROR, ex.Message));
             }
         }
     }

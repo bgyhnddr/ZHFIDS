@@ -21,6 +21,7 @@ namespace data
             InitializeComponent();
             filetransfer.FileIO.StartFileListen(this, new filetransfer.FileIO.FinishHandle(() => {
                 global.Function.InitIcon();
+                pictureBoxMark.GetPictureList(global.Variable.IMAGEFolder);
             }));
             global.Function.CreateAccessTimer(AccessTimer);
         }
@@ -36,8 +37,8 @@ namespace data
         {
             try
             {
-                pictureBoxMark.Size = this.Size;
-                global.Function.CreateErrorImage(pictureBoxMark);
+                pictureBoxMark.Size = this.Size; 
+                pictureBoxMark.GetPictureList(global.Variable.IMAGEFolder);
                 global.Function.InitIcon();
                 InitPanel(global.Variable.RowCount);
                 CarouselAdapter.GetData();
@@ -90,7 +91,6 @@ namespace data
 
         private void SetValueByRow(DataSetCarousel.CarouselRow row, System.Windows.Forms.Panel panel)
         {
-
             #region setvia
             string from, fromen;
             string tovia, toviaen;
@@ -134,7 +134,7 @@ namespace data
                     fromviaenList.Add(toen[i]);
                 }
             }
-
+            
             var via = string.Join(" ", fromviaList);
             var viaen = string.Join(" ", fromviaenList);
             #endregion
@@ -144,6 +144,7 @@ namespace data
             var g = Graphics.FromHwnd(this.Handle);
 
             int titleSize, contentSize, logoSize, fromViaSize, fromViaenSize, carouselSize, carouseWidth, contentWidth;
+
             contentSize = (int)(panel.Height * 0.25);
             titleSize = (int)(panel.Height * 0.2);
             logoSize = (int)(titleSize * 0.8125);
@@ -151,77 +152,64 @@ namespace data
             carouseWidth = Width / 5;
             carouselSize = panel.Height;
             contentWidth = Width - carouseWidth;
-            fromViaSize = contentSize;
-            var viawidth = g.MeasureString(via, new Font("黑体", contentSize, FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)).Width;
-            if (viawidth > contentWidth)
-            {
-                var newSize = fromViaSize * contentWidth / viawidth;
-                fromViaSize = (int)newSize - 2;
-            }
 
-            fromViaenSize = contentSize / 3 * 2;
-            var viaenwidth = g.MeasureString(via, new Font("黑体", fromViaenSize, FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)).Width;
-            if (viaenwidth > contentWidth)
-            {
-                var newSize = fromViaenSize * contentWidth / viaenwidth;
-                fromViaenSize = (int)newSize - 2;
-            }
+            fromViaSize = contentWidth / 12;
+            fromViaenSize = fromViaSize / 3 * 2;
+            titleSize = fromViaenSize;
 
-            var titlePanel = new System.Windows.Forms.Panel()
+            var contentPanel = new System.Windows.Forms.Panel()
             {
                 Name = panel.Name + "panelTitle",
-                Height = titleSize,
+                Height = panel.Height,
                 Width = contentWidth,
                 BackColor = Color.Transparent,
                 Location = new Point(0, 0)
             };
 
 
-
-            titlePanel.Paint += new PaintEventHandler((o, e) => {
-                var pos = 0;
+            contentPanel.Paint += new PaintEventHandler((o, e) =>
+            {
+                var bufferImage = new Bitmap(e.ClipRectangle.Width, e.ClipRectangle.Height);
+                var imageGraphics = Graphics.FromImage(bufferImage);
+                imageGraphics.Clear(contentPanel.BackColor);
+                var xpos = 0;
+                var ypos = 0;
                 var font = new Font("黑体", titleSize, FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+                var add = contentPanel.Height / 2 - font.Height / 2;
                 var fordColor = Color.White;
                 foreach (var flight in row.flight.Split(','))
                 {
-                    if(!string.IsNullOrWhiteSpace(flight))
+                    if (!string.IsNullOrWhiteSpace(flight))
                     {
-                        var icon = global.Function.GetIcon(flight.Substring(0,2));
-                        e.Graphics.DrawImage(global.Function.GetIcon(flight.Substring(0, 2)),
-                            new Point(pos, (int)((e.ClipRectangle.Height - icon.Height) / 2)));
-                        pos += icon.Width;
+                        xpos = 0;
+                        var icon = global.Function.GetIcon(flight.Substring(0, 2));
+                        imageGraphics.DrawImage(global.Function.GetIcon(flight.Substring(0, 2)),
+                            new Rectangle(xpos, ypos, font.Height, font.Height));
+                        xpos += font.Height;
                         var size = e.Graphics.MeasureString(flight, font);
-                        e.Graphics.DrawString(flight, font, new SolidBrush(fordColor),
-                            new Point(pos, (int)((e.ClipRectangle.Height - size.Height) / 2)));
-                        pos += (int)size.Width;
+                        imageGraphics.DrawString(flight, font, new SolidBrush(fordColor),
+                            new Rectangle(xpos, ypos, (int)size.Width, (int)size.Height));
+                        xpos += (int)size.Width;
+                        ypos += add;
                     }
                 }
-            });
 
+                StringFormat stringFormat = new StringFormat();
+                stringFormat.Alignment = StringAlignment.Center;
+                stringFormat.LineAlignment = StringAlignment.Far;
+                stringFormat.Trimming = StringTrimming.Word;
+                font = new Font("黑体", fromViaSize, FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+                imageGraphics.DrawString(via, font, new SolidBrush(Color.White),
+                            new Rectangle(xpos, 0, contentPanel.Width - xpos, contentPanel.Height / 5*3), stringFormat);
+                font = new Font("黑体", fromViaenSize, FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+                stringFormat.LineAlignment = StringAlignment.Near;
+                imageGraphics.DrawString(viaen, font, new SolidBrush(Color.White),
+                            new Rectangle(xpos, contentPanel.Height / 5 * 3, contentPanel.Width - xpos, contentPanel.Height / 5 * 2), stringFormat);
+                e.Graphics.DrawImage(bufferImage, e.ClipRectangle);
+
+            });
             
-            panel.Controls.Add(titlePanel);
-            panel.Controls.Add(new System.Windows.Forms.Label()
-            {
-                Name = panel.Name + "lbfromvia",
-                AutoSize = false,
-                TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = Color.White,
-                Size = new System.Drawing.Size(contentWidth, fromViaSize),
-                Font = new Font("黑体", fromViaSize, FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel),
-                Location = new Point(0, contentSize + 20),
-                Text = via
-            });
-            panel.Controls.Add(new System.Windows.Forms.Label()
-            {
-                Name = panel.Name + "lbfromviaen",
-                AutoSize = false,
-                TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = Color.White,
-                Size = new System.Drawing.Size(contentWidth, fromViaenSize),
-                Font = new Font("黑体", fromViaenSize, FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel),
-                Location = new Point(0, contentSize + 20 + fromViaSize + 20),
-                Text = viaen
-            });
+            panel.Controls.Add(contentPanel);
 
             panel.Controls.Add(new System.Windows.Forms.Label()
             {
@@ -277,6 +265,12 @@ namespace data
                             {
                                 SetValueByRow(table[i], (Panel)Controls["panel" + i.ToString()]);
                             }
+                            for (var i = table.Count; i < global.Variable.RowCount; i++)
+                            {
+                                var panel = (Panel)(Controls["panel" + i.ToString()]);
+                                panel.Controls.Clear();
+                            }
+
                             global.Function.CountErrorTime();
                             pictureBoxMark.Visible = (table.Count == 0) || (global.Variable.ERRORTIMECOUNT > global.Const.CountErrorTimeLimit);
                         });

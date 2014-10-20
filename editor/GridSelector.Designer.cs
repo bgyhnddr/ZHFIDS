@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridSelector));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnFlilterNot = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
@@ -59,13 +60,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(690, 47);
+            this.panel1.Size = new System.Drawing.Size(768, 47);
             this.panel1.TabIndex = 0;
             // 
             // btnFlilterNot
             // 
             this.btnFlilterNot.AutoSize = true;
-            this.btnFlilterNot.Location = new System.Drawing.Point(472, 12);
+            this.btnFlilterNot.Location = new System.Drawing.Point(555, 12);
             this.btnFlilterNot.Name = "btnFlilterNot";
             this.btnFlilterNot.Size = new System.Drawing.Size(39, 23);
             this.btnFlilterNot.TabIndex = 9;
@@ -76,7 +77,7 @@
             // btnFilter
             // 
             this.btnFilter.AutoSize = true;
-            this.btnFilter.Location = new System.Drawing.Point(427, 12);
+            this.btnFilter.Location = new System.Drawing.Point(510, 12);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(39, 23);
             this.btnFilter.TabIndex = 8;
@@ -86,7 +87,7 @@
             // 
             // tbFilter
             // 
-            this.tbFilter.Location = new System.Drawing.Point(321, 11);
+            this.tbFilter.Location = new System.Drawing.Point(404, 11);
             this.tbFilter.Name = "tbFilter";
             this.tbFilter.Size = new System.Drawing.Size(100, 21);
             this.tbFilter.TabIndex = 7;
@@ -94,7 +95,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(186, 15);
+            this.label2.Location = new System.Drawing.Point(269, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 6;
@@ -103,14 +104,14 @@
             // cbFilter
             // 
             this.cbFilter.FormattingEnabled = true;
-            this.cbFilter.Location = new System.Drawing.Point(221, 12);
+            this.cbFilter.Location = new System.Drawing.Point(304, 12);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(94, 20);
             this.cbFilter.TabIndex = 5;
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(522, 12);
+            this.btnSelect.Location = new System.Drawing.Point(605, 12);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSelect.TabIndex = 4;
@@ -123,13 +124,13 @@
             this.tbValue.Location = new System.Drawing.Point(35, 12);
             this.tbValue.Name = "tbValue";
             this.tbValue.ReadOnly = true;
-            this.tbValue.Size = new System.Drawing.Size(100, 21);
+            this.tbValue.Size = new System.Drawing.Size(183, 21);
             this.tbValue.TabIndex = 3;
             // 
             // btnClear
             // 
             this.btnClear.AutoSize = true;
-            this.btnClear.Location = new System.Drawing.Point(141, 12);
+            this.btnClear.Location = new System.Drawing.Point(224, 12);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(39, 23);
             this.btnClear.TabIndex = 2;
@@ -148,7 +149,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(603, 12);
+            this.btnClose.Location = new System.Drawing.Point(686, 12);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 0;
@@ -160,6 +161,7 @@
             // 
             this.dgvSelect.AllowUserToAddRows = false;
             this.dgvSelect.AllowUserToDeleteRows = false;
+            this.dgvSelect.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvSelect.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvSelect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSelect.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -170,17 +172,17 @@
             this.dgvSelect.RowHeadersWidth = 26;
             this.dgvSelect.RowTemplate.Height = 23;
             this.dgvSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSelect.Size = new System.Drawing.Size(690, 337);
+            this.dgvSelect.Size = new System.Drawing.Size(768, 337);
             this.dgvSelect.TabIndex = 1;
             // 
             // GridSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 384);
+            this.ClientSize = new System.Drawing.Size(768, 384);
             this.Controls.Add(this.dgvSelect);
             this.Controls.Add(this.panel1);
-            this.Icon = global.Properties.Resources.favicon;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GridSelector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GridSelector";

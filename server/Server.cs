@@ -350,7 +350,7 @@ namespace data
                     for (var i = 0; i < rows.Length; i++)
                     {
                         obj.ReportProgress((int)((float)(i + 1) / (float)rows.Length * 100), "关闭" + rows[i].ip);
-                        filetransfer.FileIO.ControlIP(rows[i].ip, (byte)3);
+                        filetransfer.FileIO.ControlIP(rows[i].ip, global.Const.Shutdown);
                     }
 
                     obj.ReportProgress(100, "完成");

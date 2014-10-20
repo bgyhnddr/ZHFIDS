@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fidsstyle", "fidsstyle\fids
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VCustomControls", "VCustomControls\VCustomControls.csproj", "{B7A203F9-6FF0-40D0-B31E-B8967B924A9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYSQLTest", "MYSQLTest\MYSQLTest.csproj", "{1898A105-39B1-475B-8AF2-E9DCEE9384AB}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -173,6 +175,16 @@ Global
 		{B7A203F9-6FF0-40D0-B31E-B8967B924A9B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B7A203F9-6FF0-40D0-B31E-B8967B924A9B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B7A203F9-6FF0-40D0-B31E-B8967B924A9B}.Release|x86.ActiveCfg = Release|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1898A105-39B1-475B-8AF2-E9DCEE9384AB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

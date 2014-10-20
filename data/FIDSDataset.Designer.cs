@@ -1224,6 +1224,8 @@ namespace data {
             
             private global::System.Data.DataColumn columnautoaccess;
             
+            private global::System.Data.DataColumn columncomments;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ipcstatusDataTable() {
@@ -1323,6 +1325,14 @@ namespace data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn commentsColumn {
+                get {
+                    return this.columncomments;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1358,7 +1368,7 @@ namespace data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ipcstatusRow AddipcstatusRow(string ip, int port, string mac, subsystemRow parentsubsystemRowBysubsystem_code, string logodate, string addate, System.DateTime lastaccesstime, bool autoaccess) {
+            public ipcstatusRow AddipcstatusRow(string ip, int port, string mac, subsystemRow parentsubsystemRowBysubsystem_code, string logodate, string addate, System.DateTime lastaccesstime, bool autoaccess, string comments) {
                 ipcstatusRow rowipcstatusRow = ((ipcstatusRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ip,
@@ -1368,7 +1378,8 @@ namespace data {
                         logodate,
                         addate,
                         lastaccesstime,
-                        autoaccess};
+                        autoaccess,
+                        comments};
                 if ((parentsubsystemRowBysubsystem_code != null)) {
                     columnValuesArray[3] = parentsubsystemRowBysubsystem_code[0];
                 }
@@ -1409,6 +1420,7 @@ namespace data {
                 this.columnaddate = base.Columns["addate"];
                 this.columnlastaccesstime = base.Columns["lastaccesstime"];
                 this.columnautoaccess = base.Columns["autoaccess"];
+                this.columncomments = base.Columns["comments"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1430,6 +1442,8 @@ namespace data {
                 base.Columns.Add(this.columnlastaccesstime);
                 this.columnautoaccess = new global::System.Data.DataColumn("autoaccess", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnautoaccess);
+                this.columncomments = new global::System.Data.DataColumn("comments", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncomments);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnip}, true));
                 this.columnip.AllowDBNull = false;
@@ -1441,6 +1455,7 @@ namespace data {
                 this.columnlogodate.MaxLength = 19;
                 this.columnaddate.MaxLength = 19;
                 this.columnautoaccess.AllowDBNull = false;
+                this.columncomments.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4632,6 +4647,22 @@ namespace data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string comments {
+                get {
+                    try {
+                        return ((string)(this[this.tableipcstatus.commentsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ipcstatus”中列“comments”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableipcstatus.commentsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public subsystemRow subsystemRow {
                 get {
                     return ((subsystemRow)(this.GetParentRow(this.Table.ParentRelations["subsystem_code"])));
@@ -4699,6 +4730,18 @@ namespace data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetlastaccesstimeNull() {
                 this[this.tableipcstatus.lastaccesstimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscommentsNull() {
+                return this.IsNull(this.tableipcstatus.commentsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcommentsNull() {
+                this[this.tableipcstatus.commentsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7786,10 +7829,11 @@ namespace data.FIDSDatasetTableAdapters {
             tableMapping.ColumnMappings.Add("addate", "addate");
             tableMapping.ColumnMappings.Add("lastaccesstime", "lastaccesstime");
             tableMapping.ColumnMappings.Add("autoaccess", "autoaccess");
+            tableMapping.ColumnMappings.Add("comments", "comments");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `ipcstatus` WHERE ((`ip` = @p1) AND (`port` = @p2) AND ((@p3 = 1 AND `mac` IS NULL) OR (`mac` = @p4)) AND ((@p5 = 1 AND `subsystem` IS NULL) OR (`subsystem` = @p6)) AND ((@p7 = 1 AND `logodate` IS NULL) OR (`logodate` = @p8)) AND ((@p9 = 1 AND `addate` IS NULL) OR (`addate` = @p10)) AND ((@p11 = 1 AND `lastaccesstime` IS NULL) OR (`lastaccesstime` = @p12)) AND (`autoaccess` = @p13))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `ipcstatus` WHERE ((`ip` = @p1) AND (`port` = @p2) AND ((@p3 = 1 AND `mac` IS NULL) OR (`mac` = @p4)) AND ((@p5 = 1 AND `subsystem` IS NULL) OR (`subsystem` = @p6)) AND ((@p7 = 1 AND `logodate` IS NULL) OR (`logodate` = @p8)) AND ((@p9 = 1 AND `addate` IS NULL) OR (`addate` = @p10)) AND ((@p11 = 1 AND `lastaccesstime` IS NULL) OR (`lastaccesstime` = @p12)) AND (`autoaccess` = @p13) AND ((@p14 = 1 AND `comments` IS NULL) OR (`comments` = @p15)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -7900,10 +7944,28 @@ namespace data.FIDSDatasetTableAdapters {
             param.SourceColumn = "autoaccess";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p14";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "comments";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p15";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "comments";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `ipcstatus` (`ip`, `port`, `mac`, `subsystem`, `logodate`, `addate`, " +
-                "`lastaccesstime`, `autoaccess`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)";
+                "`lastaccesstime`, `autoaccess`, `comments`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6" +
+                ", @p7, @p8, @p9)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -7961,9 +8023,16 @@ namespace data.FIDSDatasetTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "autoaccess";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p9";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "comments";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `ipcstatus` SET `ip` = @p1, `port` = @p2, `mac` = @p3, `subsystem` = @p4, `logodate` = @p5, `addate` = @p6, `lastaccesstime` = @p7, `autoaccess` = @p8 WHERE ((`ip` = @p9) AND (`port` = @p10) AND ((@p11 = 1 AND `mac` IS NULL) OR (`mac` = @p12)) AND ((@p13 = 1 AND `subsystem` IS NULL) OR (`subsystem` = @p14)) AND ((@p15 = 1 AND `logodate` IS NULL) OR (`logodate` = @p16)) AND ((@p17 = 1 AND `addate` IS NULL) OR (`addate` = @p18)) AND ((@p19 = 1 AND `lastaccesstime` IS NULL) OR (`lastaccesstime` = @p20)) AND (`autoaccess` = @p21))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `ipcstatus` SET `ip` = @p1, `port` = @p2, `mac` = @p3, `subsystem` = @p4, `logodate` = @p5, `addate` = @p6, `lastaccesstime` = @p7, `autoaccess` = @p8, `comments` = @p9 WHERE ((`ip` = @p10) AND (`port` = @p11) AND ((@p12 = 1 AND `mac` IS NULL) OR (`mac` = @p13)) AND ((@p14 = 1 AND `subsystem` IS NULL) OR (`subsystem` = @p15)) AND ((@p16 = 1 AND `logodate` IS NULL) OR (`logodate` = @p17)) AND ((@p18 = 1 AND `addate` IS NULL) OR (`addate` = @p19)) AND ((@p20 = 1 AND `lastaccesstime` IS NULL) OR (`lastaccesstime` = @p21)) AND (`autoaccess` = @p22) AND ((@p23 = 1 AND `comments` IS NULL) OR (`comments` = @p24)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -8026,15 +8095,14 @@ namespace data.FIDSDatasetTableAdapters {
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "ip";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumn = "comments";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p10";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "port";
+            param.SourceColumn = "ip";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -8042,12 +8110,20 @@ namespace data.FIDSDatasetTableAdapters {
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "mac";
+            param.SourceColumn = "port";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p12";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "mac";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p13";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
@@ -8055,33 +8131,33 @@ namespace data.FIDSDatasetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p13";
+            param.ParameterName = "@p14";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "subsystem";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p14";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "subsystem";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p15";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "logodate";
+            param.SourceColumn = "subsystem";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p16";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "logodate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p17";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
@@ -8089,7 +8165,7 @@ namespace data.FIDSDatasetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p17";
+            param.ParameterName = "@p18";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -8098,7 +8174,7 @@ namespace data.FIDSDatasetTableAdapters {
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p18";
+            param.ParameterName = "@p19";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
@@ -8106,7 +8182,7 @@ namespace data.FIDSDatasetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p19";
+            param.ParameterName = "@p20";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -8115,7 +8191,7 @@ namespace data.FIDSDatasetTableAdapters {
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p20";
+            param.ParameterName = "@p21";
             param.DbType = global::System.Data.DbType.DateTime;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
             param.IsNullable = true;
@@ -8123,11 +8199,28 @@ namespace data.FIDSDatasetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p21";
+            param.ParameterName = "@p22";
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
             param.SourceColumn = "autoaccess";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p23";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "comments";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p24";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "comments";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -8145,8 +8238,8 @@ namespace data.FIDSDatasetTableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT   ip, port, mac, subsystem, logodate, addate, lastaccesstime, autoaccess\r\n" +
-                "FROM      ipcstatus";
+            this._commandCollection[0].CommandText = "SELECT   ip, port, mac, subsystem, logodate, addate, lastaccesstime, autoaccess, " +
+                "comments\r\nFROM      ipcstatus";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -8207,7 +8300,7 @@ namespace data.FIDSDatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string p1, int p2, string p4, string p6, string p8, string p10, global::System.Nullable<global::System.DateTime> p12, byte p13) {
+        public virtual int Delete(string p1, int p2, string p4, string p6, string p8, string p10, global::System.Nullable<global::System.DateTime> p12, byte p13, string p15) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
@@ -8256,6 +8349,14 @@ namespace data.FIDSDatasetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             this.Adapter.DeleteCommand.Parameters[12].Value = ((byte)(p13));
+            if ((p15 == null)) {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(p15));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8276,7 +8377,7 @@ namespace data.FIDSDatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, int p2, string p3, string p4, string p5, string p6, global::System.Nullable<global::System.DateTime> p7, byte p8) {
+        public virtual int Insert(string p1, int p2, string p3, string p4, string p5, string p6, global::System.Nullable<global::System.DateTime> p7, byte p8, string p9) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
@@ -8315,6 +8416,12 @@ namespace data.FIDSDatasetTableAdapters {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             this.Adapter.InsertCommand.Parameters[7].Value = ((byte)(p8));
+            if ((p9 == null)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(p9));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8345,13 +8452,15 @@ namespace data.FIDSDatasetTableAdapters {
                     global::System.Nullable<global::System.DateTime> p7, 
                     byte p8, 
                     string p9, 
-                    int p10, 
-                    string p12, 
-                    string p14, 
-                    string p16, 
-                    string p18, 
-                    global::System.Nullable<global::System.DateTime> p20, 
-                    byte p21) {
+                    string p10, 
+                    int p11, 
+                    string p13, 
+                    string p15, 
+                    string p17, 
+                    string p19, 
+                    global::System.Nullable<global::System.DateTime> p21, 
+                    byte p22, 
+                    string p24) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
@@ -8391,53 +8500,67 @@ namespace data.FIDSDatasetTableAdapters {
             }
             this.Adapter.UpdateCommand.Parameters[7].Value = ((byte)(p8));
             if ((p9 == null)) {
-                throw new global::System.ArgumentNullException("p9");
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(p9));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(p10));
-            if ((p12 == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            if ((p10 == null)) {
+                throw new global::System.ArgumentNullException("p10");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(p12));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(p10));
             }
-            if ((p14 == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(p14));
-            }
-            if ((p16 == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(p11));
+            if ((p13 == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(p16));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(p13));
             }
-            if ((p18 == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(p18));
-            }
-            if ((p20.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((System.DateTime)(p20.Value));
+            if ((p15 == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(p15));
             }
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((byte)(p21));
+            if ((p17 == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(p17));
+            }
+            if ((p19 == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(p19));
+            }
+            if ((p21.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((System.DateTime)(p21.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((byte)(p22));
+            if ((p24 == null)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(p24));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8458,8 +8581,25 @@ namespace data.FIDSDatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int p2, string p3, string p4, string p5, string p6, global::System.Nullable<global::System.DateTime> p7, byte p8, string p9, int p10, string p12, string p14, string p16, string p18, global::System.Nullable<global::System.DateTime> p20, byte p21) {
-            return this.Update(p9, p2, p3, p4, p5, p6, p7, p8, p9, p10, p12, p14, p16, p18, p20, p21);
+        public virtual int Update(
+                    int p2, 
+                    string p3, 
+                    string p4, 
+                    string p5, 
+                    string p6, 
+                    global::System.Nullable<global::System.DateTime> p7, 
+                    byte p8, 
+                    string p9, 
+                    string p10, 
+                    int p11, 
+                    string p13, 
+                    string p15, 
+                    string p17, 
+                    string p19, 
+                    global::System.Nullable<global::System.DateTime> p21, 
+                    byte p22, 
+                    string p24) {
+            return this.Update(p10, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p13, p15, p17, p19, p21, p22, p24);
         }
     }
     

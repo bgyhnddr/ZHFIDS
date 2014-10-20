@@ -92,6 +92,10 @@
       <Project>{1B952252-690D-4B7A-B45E-B50FD26925E4}</Project>
       <Name>data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VCustomControls\VCustomControls.csproj">
+      <Project>{b7a203f9-6ff0-40d0-b31e-b8967b924a9b}</Project>
+      <Name>VCustomControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

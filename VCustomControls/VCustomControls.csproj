@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CPictureBox.Designer.cs">
+      <DependentUpon>CPictureBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScrollDataGridView.cs">
       <SubType>Component</SubType>
@@ -57,6 +63,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CPictureBox.resx">
+      <DependentUpon>CPictureBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScrollDataGridView.resx">
       <DependentUpon>ScrollDataGridView.cs</DependentUpon>
     </EmbeddedResource>

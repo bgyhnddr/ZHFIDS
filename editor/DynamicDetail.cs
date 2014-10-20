@@ -54,7 +54,14 @@ namespace data
             row.name = string.Empty;
             row.en_name = string.Empty;
             row.type = global.Const.Dictionary_FlightStatus;
-            dictTable.AdddictionaryRow(row); 
+            dictTable.AdddictionaryRow(row);
+            var row2 = dictTable.NewdictionaryRow();
+            row2.index = -1;
+            row2.code = string.Empty;
+            row2.name = string.Empty;
+            row2.en_name = string.Empty;
+            row2.type = global.Const.Dictionary_AbnormalCause;
+            dictTable.AdddictionaryRow(row2); 
             #region dictbing
             cbArravalStatus.DataSource = ((data.FIDSDataset.dictionaryDataTable)dictTable.Copy()).Where(o => o.type == global.Const.Dictionary_FlightStatus).OrderBy(o => o.index).ToList();
             cbArravalStatus.ValueMember = dictTable.en_nameColumn.ColumnName;

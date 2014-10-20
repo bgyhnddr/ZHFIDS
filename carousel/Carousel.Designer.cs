@@ -33,7 +33,7 @@
             this.lbTitle = new System.Windows.Forms.Label();
             this.AccessTimer = new System.Windows.Forms.Timer(this.components);
             this.bgwCarousel = new System.ComponentModel.BackgroundWorker();
-            this.pictureBoxMark = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMark = new VCustomControls.CPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMark)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +45,7 @@
             this.lbTitle.ForeColor = System.Drawing.Color.White;
             this.lbTitle.Location = new System.Drawing.Point(0, 0);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(768, 64);
+            this.lbTitle.Size = new System.Drawing.Size(517, 64);
             this.lbTitle.TabIndex = 0;
             this.lbTitle.Text = "行李提取信息\r\nBaggage Claim";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -64,7 +64,7 @@
             this.pictureBoxMark.Enabled = false;
             this.pictureBoxMark.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxMark.Name = "pictureBoxMark";
-            this.pictureBoxMark.Size = new System.Drawing.Size(768, 788);
+            this.pictureBoxMark.Size = new System.Drawing.Size(517, 718);
             this.pictureBoxMark.TabIndex = 4;
             this.pictureBoxMark.TabStop = false;
             // 
@@ -73,7 +73,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(768, 788);
+            this.ClientSize = new System.Drawing.Size(517, 718);
             this.Controls.Add(this.pictureBoxMark);
             this.Controls.Add(this.lbTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -94,6 +94,6 @@
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.Timer AccessTimer;
         private System.ComponentModel.BackgroundWorker bgwCarousel;
-        private System.Windows.Forms.PictureBox pictureBoxMark;
+        private VCustomControls.CPictureBox pictureBoxMark;
     }
 }

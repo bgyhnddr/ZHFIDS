@@ -36,7 +36,7 @@
             this.dgvGuide = new VCustomControls.ScrollDataGridView();
             this.AccessTimer = new System.Windows.Forms.Timer(this.components);
             this.bgwGuide = new System.ComponentModel.BackgroundWorker();
-            this.pictureBoxMark = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMark = new VCustomControls.CPictureBox();
             this.lbTime = new System.Windows.Forms.Label();
             this.STD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ICON = new System.Windows.Forms.DataGridViewImageColumn();
@@ -203,7 +203,7 @@
         private VCustomControls.ScrollDataGridView dgvGuide;
         private System.Windows.Forms.Timer AccessTimer;
         private System.ComponentModel.BackgroundWorker bgwGuide;
-        private System.Windows.Forms.PictureBox pictureBoxMark;
+        private VCustomControls.CPictureBox pictureBoxMark;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn STD;
         private System.Windows.Forms.DataGridViewImageColumn ICON;

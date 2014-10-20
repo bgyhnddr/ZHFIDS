@@ -230,6 +230,16 @@ namespace fidsstyle
                         if (sender != null && e.RowIndex >= 0)
                         {
                             var currentgrid = (DataGridView)sender;
+                            if (e.Value != null && e.Value.GetType() == typeof(string))
+                            {
+                                var textLength = e.Graphics.MeasureString(e.Value.ToString(), e.CellStyle.Font).Width;
+                                if (textLength > e.CellBounds.Width)
+                                {
+                                    e.Handled = true;
+                                    return;
+                                }
+                            }
+
                             switch (currentgrid.Columns[e.ColumnIndex].Name)
                             {
                                 case "ICON":
@@ -244,7 +254,7 @@ namespace fidsstyle
                                     break;
                                 case "GATE":
                                 case "COUNTER":
-                                    if (currentgrid["STD", e.RowIndex].Value != null && currentgrid["STD", e.RowIndex].Value.ToString().Length > 0)
+                                    if (currentgrid["FLIGHT", e.RowIndex].Value != null && currentgrid["FLIGHT", e.RowIndex].Value.ToString().Length > 0)
                                     {
                                         var backColor = e.CellStyle.BackColor;
                                         Rectangle newRect = new Rectangle(e.CellBounds.X, e.CellBounds.Y, e.CellBounds.Width, e.CellBounds.Height);
@@ -532,6 +542,15 @@ namespace fidsstyle
                         if (sender != null && e.RowIndex >= 0)
                         {
                             var currentgrid = (DataGridView)sender;
+                            if (e.Value != null && e.Value.GetType() == typeof(string))
+                            {
+                                var textLength = e.Graphics.MeasureString(e.Value.ToString(), e.CellStyle.Font).Width;
+                                if (textLength > e.CellBounds.Width)
+                                {
+                                    e.Handled = true;
+                                    return;
+                                }
+                            }
                             switch (currentgrid.Columns[e.ColumnIndex].Name)
                             {
                                 case "ICON":
@@ -545,7 +564,7 @@ namespace fidsstyle
                                     }
                                     break;
                                 case "GATE":
-                                    if (currentgrid["STD", e.RowIndex].Value != null && currentgrid["STD", e.RowIndex].Value.ToString().Length > 0)
+                                    if (currentgrid["FLIGHT", e.RowIndex].Value != null && currentgrid["FLIGHT", e.RowIndex].Value.ToString().Length > 0)
                                     {
                                         var backColor = e.CellStyle.BackColor;
                                         Rectangle newRect = new Rectangle(e.CellBounds.X, e.CellBounds.Y, e.CellBounds.Width, e.CellBounds.Height);
@@ -588,7 +607,15 @@ namespace fidsstyle
                                     }
                                     break;
                                 default:
-                                    CellDrawStingDefalut(sender, e);
+                                    var textLength = e.Graphics.MeasureString(e.Value.ToString(), e.CellStyle.Font).Width;
+                                    if (textLength > e.CellBounds.Width)
+                                    {
+                                        e.Handled = true;
+                                    }
+                                    else
+                                    {
+                                        CellDrawStingDefalut(sender, e);
+                                    }
                                     break;
                             }
                         }
@@ -781,6 +808,16 @@ namespace fidsstyle
                         if (sender != null && e.RowIndex >= 0)
                         {
                             var currentgrid = (DataGridView)sender;
+
+                            if (e.Value != null && e.Value.GetType() == typeof(string))
+                            {
+                                var textLength = e.Graphics.MeasureString(e.Value.ToString(), e.CellStyle.Font).Width;
+                                if (textLength > e.CellBounds.Width)
+                                {
+                                    e.Handled = true;
+                                    return;
+                                }
+                            }
                             switch (currentgrid.Columns[e.ColumnIndex].Name)
                             {
                                 case "ICON":
@@ -790,7 +827,6 @@ namespace fidsstyle
                                         e.Graphics.DrawLine(new Pen(Color.White, 1),
                                             new Point(e.CellBounds.X - 1, (int)(e.CellBounds.Y + e.CellBounds.Height * 0.9)),
                                             new Point(e.CellBounds.X - 1, (int)(e.CellBounds.Y - e.CellBounds.Height * 0.9)));
-
                                     }
                                     break;
                                 case "FROMVIA":
@@ -819,7 +855,15 @@ namespace fidsstyle
                                     }
                                     break;
                                 default:
-                                    CellDrawStingDefalut(sender, e);
+                                    var textLength = e.Graphics.MeasureString(e.Value.ToString(), e.CellStyle.Font).Width;
+                                    if (textLength > e.CellBounds.Width)
+                                    {
+                                        e.Handled = true;
+                                    }
+                                    else
+                                    {
+                                        CellDrawStingDefalut(sender, e);
+                                    }
                                     break;
                             }
                         }

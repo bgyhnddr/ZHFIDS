@@ -208,6 +208,43 @@ namespace global
             }
         }
 
+
+        private static int _adinterval;
+        public static int ADInterval
+        {
+            get
+            {
+                if (_adinterval == 0)
+                {
+                    try
+                    {
+                        _adinterval = int.Parse(ConfigurationManager.AppSettings[Const.ADInterval]);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.Print(ex.StackTrace);
+                        _adinterval = 10;
+                    }
+                }
+                return _adinterval;
+            }
+            set
+            {
+                try
+                {
+                    Function.SetConfigValue(Const.ADInterval, value.ToString());
+                }
+                catch (Exception ex)
+                {
+                    Debug.Print(ex.StackTrace);
+                    _adinterval = 10;
+                }
+
+                _adinterval = value;
+
+            }
+        }
+
         private static string _cssstyle;
         public static string CSSSTYLE
         {
@@ -296,6 +333,13 @@ namespace global
             get
             {
                 return Application.StartupPath + "\\image\\ad";
+            }
+        }
+        public static string IMAGEFolder
+        {
+            get
+            {
+                return Application.StartupPath + "\\image";
             }
         }
         public static Dictionary<string, Image> ImageDictionary = new Dictionary<string, Image>();
