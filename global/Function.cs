@@ -56,32 +56,35 @@ namespace global
             timer.Interval = Const.AccessTimerInterval;
             timer.Tick += new System.EventHandler((sender, e) =>
             {
-                MySql.Data.MySqlClient.MySqlTransaction tran = null;
-                var adapter = new data.FIDSDatasetTableAdapters.ipcstatusTableAdapter();
+                var conn = new MySql.Data.MySqlClient.MySqlConnection(data.FIDSAdapter.ConfigAdapter.Connection.ConnectionString);
                 try
                 {
-                    adapter.Connection.Open();
-                    tran = adapter.Connection.BeginTransaction(IsolationLevel.ReadCommitted);
-                    var rows = adapter.GetData().Where(o => o.ip == global.Variable.IP.ToString()).ToArray();
-                    if (rows.Length > 0)
-                    {
-                        var row = rows[0];
-                        row.lastaccesstime = DateTime.Now;
-                        adapter.Update(row);
-                    }
-                    tran.Commit();
+
+                    conn.Open();
+                    string sql = string.Format("UPDATE `zh-fids`.`ipcstatus` SET `lastaccesstime` = '{0}' WHERE `ip` = '{1}';", DateTime.Now.ToString(global.Const.DATETIMEFORMAT), global.Variable.IP.ToString());
+                    MySql.Data.MySqlClient.MySqlCommand comm = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                    comm.ExecuteNonQuery();
+
+                    //MySql.Data.MySqlClient.MySqlTransaction tran = null;
+                    //var adapter = new data.FIDSDatasetTableAdapters.ipcstatusTableAdapter();
+
+                    //adapter.Connection.Open();
+                    //tran = adapter.Connection.BeginTransaction(IsolationLevel.ReadCommitted);
+                    //var rows = adapter.GetData().Where(o => o.ip == global.Variable.IP.ToString()).ToArray();
+                    //if (rows.Length > 0)
+                    //{
+                    //    var row = rows[0];
+                    //    row.lastaccesstime = DateTime.Now;
+                    //    adapter.Update(row);
+                    //}
+                    //tran.Commit();
                 }
                 catch (Exception ex)
                 {
-                    Debug.Print(ex.StackTrace);
-                    if (tran != null)
-                    {
-                        tran.Rollback();
-                    }
                 }
                 finally
                 {
-                    adapter.Connection.Close();
+                    conn.Close();
                 }
             });
             timer.Enabled = true;
