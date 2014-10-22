@@ -65,6 +65,7 @@ namespace VCustomControls
 
         public void SetBlackMask(bool show)
         {
+            blackMask = show;
             if(show)
             {
                 this.SizeMode = PictureBoxSizeMode.StretchImage;

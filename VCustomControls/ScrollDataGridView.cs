@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing.Text;
 
 namespace VCustomControls
 {
@@ -164,6 +165,7 @@ namespace VCustomControls
             {
                 try
                 {
+                    e.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
                     if (e.RowIndex >= 0 && e.Value != null && e.Value.GetType() == typeof(string))
                     {
                         if (RollingCellList.Where(obj => obj.x == e.ColumnIndex && obj.y == e.RowIndex).Count() == 0)

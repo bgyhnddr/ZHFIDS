@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.Drawing.Text;
 
 namespace data
 {
@@ -169,6 +170,7 @@ namespace data
 
             contentPanel.Paint += new PaintEventHandler((o, e) =>
             {
+                e.Graphics.TextRenderingHint = global.Variable.HINT;
                 var bufferImage = new Bitmap(e.ClipRectangle.Width, e.ClipRectangle.Height);
                 var imageGraphics = Graphics.FromImage(bufferImage);
                 imageGraphics.Clear(contentPanel.BackColor);

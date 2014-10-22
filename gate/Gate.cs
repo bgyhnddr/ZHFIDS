@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Drawing.Text;
 
 namespace data
 {
@@ -76,13 +77,13 @@ namespace data
             panelContent.Width = panelTips.Width = panelAD.Width = Width;
 
             panelTitle.BackColor = fidsstyle.Style.RowBackColor;
-            panelTitle.Height = (int)(Height * 0.15);
+            panelTitle.Height = (int)(Height * 0.20);
             panelContent.Location = new Point(0, panelTitle.Height);
-            panelContent.Height = (int)(Height * 0.45);
+            panelContent.Height = (int)(Height * 0.35);
             panelTips.BackColor = fidsstyle.Style.RowBackColor;
             panelTips.Location = new Point(0, panelContent.Location.Y + panelContent.Height);
-            panelTips.Height = (int)(Height * 0.15);
-
+            panelTips.Height = (int)(Height * 0.20);
+            UpdateStyles();
 
             panelAD.Height = Height - panelTips.Location.Y - panelTips.Height;
             panelAD.Location = new Point(0, panelTips.Location.Y + panelContent.Height);
@@ -215,19 +216,22 @@ namespace data
 
             if (row.gate.IndexOf(">") >= 0)
             {
-                if (row.gate.Substring(0, row.gate.IndexOf(">")) == global.Variable.GATE)
+                if (!(row.gate.Substring(0, 2) == row.gate.Substring(3, 2)))
                 {
-                    LTimer = new System.Windows.Forms.Timer();
-                    LTimer.Tick += new EventHandler((o, e) =>
+                    if (row.gate.Substring(0, row.gate.IndexOf(">")) == global.Variable.GATE)
                     {
-                        RemarkText = string.Format("Change to Gate {0}", row.gate.Substring(row.gate.IndexOf(">") + 1));
-                        panelTips.Refresh();
-                        LTimer.Stop();
-                    });
-                    LTimer.Interval = UpdateInterval * 1000 / 2;
-                    LTimer.Start();
-                    RemarkTextColor = Color.Red;
-                    return string.Format("现改为{0}号登机口", row.gate.Substring(row.gate.IndexOf(">") + 1));
+                        LTimer = new System.Windows.Forms.Timer();
+                        LTimer.Tick += new EventHandler((o, e) =>
+                        {
+                            RemarkText = string.Format("Change to Gate {0}", row.gate.Substring(row.gate.IndexOf(">") + 1));
+                            panelTips.Refresh();
+                            LTimer.Stop();
+                        });
+                        LTimer.Interval = UpdateInterval * 1000 / 2;
+                        LTimer.Start();
+                        RemarkTextColor = Color.Red;
+                        return string.Format("现改为{0}号登机口", row.gate.Substring(row.gate.IndexOf(">") + 1));
+                    }
                 }
             }
 
@@ -335,8 +339,8 @@ namespace data
 
         private void SetMask(bool visible, bool black = false)
         {
-            pictureBoxMark.SetBlackMask(black);
             pictureBoxMark.Visible = visible;
+            pictureBoxMark.SetBlackMask(black);
         }
 
         private void GetTableList(DataSetGate.GateDataTable gate)
@@ -401,7 +405,7 @@ namespace data
             {
                 if (!string.IsNullOrWhiteSpace(flight))
                 {
-
+                    e.Graphics.TextRenderingHint = global.Variable.HINT;
                     var logoString = flight.Substring(0, 2);
                     var logo = global.Function.GetLogo(logoString);
                     int logoHeight = (int)(e.ClipRectangle.Height * 0.8);
@@ -409,21 +413,21 @@ namespace data
                     var ImageRectangle = new Rectangle((e.ClipRectangle.Height - logoHeight) / 2, (e.ClipRectangle.Height - logoHeight) / 2, logoHeight * logo.Width / logo.Height, logoHeight);
 
                     e.Graphics.DrawImage(logo, ImageRectangle);
-                    var font = new Font("黑体", (int)(panelTitle.Height * 0.8), fontStyle, System.Drawing.GraphicsUnit.Pixel);
+                    var font = new Font("黑体", (int)(panelTitle.Height * 0.9), fontStyle, System.Drawing.GraphicsUnit.Pixel);
 
                     var sizeF = e.Graphics.MeasureString(flight, font);
 
-                    var fontRectangle = new Rectangle(ImageRectangle.X + ImageRectangle.Width + 5, 0, (int)sizeF.Width, panelTitle.Height);
-
+                    var fontRectangle = new Rectangle(e.ClipRectangle.Width / 2, 0, e.ClipRectangle.Width / 2, e.ClipRectangle.Height);
+                    fontRectangle.Offset(-20, 0);
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Far;
-                    stringFormat.LineAlignment = StringAlignment.Center;
+                    stringFormat.LineAlignment = StringAlignment.Near;
                     stringFormat.Trimming = StringTrimming.Word;
 
                     e.Graphics.DrawString(flight,
                         font,
                         new SolidBrush(Color.White),
-                        e.ClipRectangle,
+                        fontRectangle,
                         stringFormat);
 
                     return fontRectangle.X + fontRectangle.Width;
@@ -447,6 +451,7 @@ namespace data
         {
             try
             {
+                e.Graphics.TextRenderingHint = global.Variable.HINT;
                 DateTime dateTime;
                 if (DateTime.TryParseExact(time, "HHmm", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out dateTime))
                 {
@@ -455,7 +460,7 @@ namespace data
                     stringFormat.Alignment = StringAlignment.Far;
                     stringFormat.LineAlignment = StringAlignment.Center;
                     stringFormat.Trimming = StringTrimming.Word;
-                    var font = new Font("黑体", panelTips.Height / 2, fontStyle, System.Drawing.GraphicsUnit.Pixel);
+                    var font = new Font("黑体", (int)(panelTips.Height*0.55), fontStyle, System.Drawing.GraphicsUnit.Pixel);
                     var size = e.Graphics.MeasureString("计划STDXX:XX ", font);
                     var remarkSize = e.Graphics.MeasureString(remark, font);
                     var rect = new Rectangle(e.ClipRectangle.X, e.ClipRectangle.Y, (int)(size.Width) + 5, panelTips.Height);
@@ -487,22 +492,24 @@ namespace data
         {
             try
             {
+                e.Graphics.TextRenderingHint = global.Variable.HINT;
                 StringFormat stringFormat = new StringFormat();
                 stringFormat.Alignment = StringAlignment.Center;
-                stringFormat.LineAlignment = StringAlignment.Far;
+                stringFormat.LineAlignment = StringAlignment.Near;
                 stringFormat.Trimming = StringTrimming.Word;
-                var toFont = new Font("黑体", e.ClipRectangle.Height / 4, fontStyle, System.Drawing.GraphicsUnit.Pixel);
-                var toRect = new Rectangle(e.ClipRectangle.X, e.ClipRectangle.Y, e.ClipRectangle.Width, e.ClipRectangle.Height / 2);
+                var toFont = new Font("黑体", (int)(e.ClipRectangle.Height*0.6), fontStyle, System.Drawing.GraphicsUnit.Pixel);
+                var toFonten = new Font("黑体", (int)(e.ClipRectangle.Height / 4), fontStyle, System.Drawing.GraphicsUnit.Pixel);
+                var toRect = new Rectangle(e.ClipRectangle.X, (int)(e.ClipRectangle.Height * 0.05), e.ClipRectangle.Width, e.ClipRectangle.Height);
                 e.Graphics.DrawString(to,
                                     toFont,
                                     new SolidBrush(Color.White),
                                     toRect,
                                     stringFormat);
                 var toenFont = new Font("黑体", e.ClipRectangle.Height / 4, fontStyle, System.Drawing.GraphicsUnit.Pixel);
-                var toenRect = new Rectangle(e.ClipRectangle.X, e.ClipRectangle.Y + toRect.Height, e.ClipRectangle.Width, e.ClipRectangle.Height / 2);
-                stringFormat.LineAlignment = StringAlignment.Near;
+                var toenRect = new Rectangle(e.ClipRectangle.X, -(int)(e.ClipRectangle.Height * 0.05), e.ClipRectangle.Width, e.ClipRectangle.Height);
+                stringFormat.LineAlignment = StringAlignment.Far;
                 e.Graphics.DrawString(toen,
-                                    toFont,
+                                    toFonten,
                                     new SolidBrush(Color.White),
                                     toenRect,
                                     stringFormat);

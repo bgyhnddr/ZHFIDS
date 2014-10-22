@@ -6,6 +6,7 @@ using global;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
+using System.Drawing.Text;
 
 namespace fidsstyle
 {
@@ -177,15 +178,30 @@ namespace fidsstyle
                 {
                     try
                     {
+                        e.Graphics.TextRenderingHint = global.Variable.HINT;
                         if (sender != null && e.RowIndex == -1)
                         {
                             var currentgrid = (DataGridView)sender;
                             StringFormat stringFormat = new StringFormat();
+                            Rectangle newRect;
                             switch (currentgrid.Columns[e.ColumnIndex].Name)
                             {
+                                case "COUNTER":
+                                    e.Graphics.FillRectangle(new SolidBrush(currentgrid.ColumnHeadersDefaultCellStyle.BackColor), e.CellBounds);//用背景色填充单元格
+                                    stringFormat.Alignment = StringAlignment.Far;
+                                    stringFormat.LineAlignment = StringAlignment.Center;
+                                    stringFormat.Trimming = StringTrimming.Word;
+                                    if (e.Value != null)
+                                    {
+                                        newRect = new Rectangle(e.CellBounds.X - 20, e.CellBounds.Y, e.CellBounds.Width + 20, e.CellBounds.Height);
+                                        e.Graphics.DrawString((String)e.Value, currentgrid.ColumnHeadersDefaultCellStyle.Font,
+                                                   new SolidBrush(currentgrid.ColumnHeadersDefaultCellStyle.ForeColor), newRect, stringFormat);
+                                    }
+                                    e.Handled = true;
+                                    break;
                                 case "GATE":
                                     var width = GridGraphics.MeasureString(e.Value.ToString(), currentgrid.ColumnHeadersDefaultCellStyle.Font).Width;
-                                    Rectangle newRect = new Rectangle(e.CellBounds.X, e.CellBounds.Y, (int)width + 30, currentgrid.ColumnHeadersHeight);
+                                    newRect = new Rectangle(e.CellBounds.X, e.CellBounds.Y, (int)width + 30, currentgrid.ColumnHeadersHeight);
                                     Brush backColorBrush = new SolidBrush(currentgrid.ColumnHeadersDefaultCellStyle.BackColor);//非选中的背景色
                                     e.Graphics.FillRectangle(backColorBrush, newRect);//用背景色填充单元格
                                     stringFormat.Alignment = StringAlignment.Near;
@@ -490,6 +506,7 @@ namespace fidsstyle
                 {
                     try
                     {
+                        e.Graphics.TextRenderingHint = global.Variable.HINT;
                         if (sender != null && e.RowIndex == -1)
                         {
                             var currentgrid = (DataGridView)sender;
@@ -805,6 +822,7 @@ namespace fidsstyle
                 {
                     try
                     {
+                        e.Graphics.TextRenderingHint = global.Variable.HINT;
                         if (sender != null && e.RowIndex >= 0)
                         {
                             var currentgrid = (DataGridView)sender;

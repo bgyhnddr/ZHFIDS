@@ -22,3 +22,17 @@ F:\开发\MYSQL\ZHFIDS\fidsstyle\obj\Debug\fidsstyle.dll
 F:\开发\MYSQL\ZHFIDS\fidsstyle\obj\Debug\fidsstyle.pdb
 F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\fidsstyle\bin\Debug\VCustomControls.dll
 F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\fidsstyle\bin\Debug\VCustomControls.pdb
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\fidsstyle.dll
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\fidsstyle.pdb
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\global.dll
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\VCustomControls.dll
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\data.dll
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\Newtonsoft.Json.dll
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\global.pdb
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\VCustomControls.pdb
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\data.pdb
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\Newtonsoft.Json.xml
+F:\开发\GitHub\ZHFIDS\fidsstyle\obj\Debug\fidsstyle.csprojResolveAssemblyReference.cache
+F:\开发\GitHub\ZHFIDS\fidsstyle\obj\Debug\fidsstyle.dll
+F:\开发\GitHub\ZHFIDS\fidsstyle\obj\Debug\fidsstyle.pdb
+F:\开发\GitHub\ZHFIDS\fidsstyle\bin\Debug\MySql.Data.dll

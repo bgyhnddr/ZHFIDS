@@ -8,6 +8,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Text;
 
 namespace global
 {
@@ -353,5 +354,7 @@ namespace global
         public static bool APPLICATIONRUN = false;
 
         public static bool ADMIN = false;
+
+        public static TextRenderingHint HINT = TextRenderingHint.AntiAlias;
     }
 }

@@ -107,8 +107,11 @@
             this.pictureBoxMark.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxMark.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxMark.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxMark.Mode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxMark.Name = "pictureBoxMark";
+            this.pictureBoxMark.PictureList = null;
             this.pictureBoxMark.Size = new System.Drawing.Size(1366, 768);
+            this.pictureBoxMark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxMark.TabIndex = 1;
             this.pictureBoxMark.TabStop = false;
             // 
@@ -163,7 +166,7 @@
             // 
             this.COUNTER.DataPropertyName = "counter";
             this.COUNTER.FillWeight = 5F;
-            this.COUNTER.HeaderText = "值机\nAREA";
+            this.COUNTER.HeaderText = "值机区\nAREA";
             this.COUNTER.Name = "COUNTER";
             this.COUNTER.ReadOnly = true;
             this.COUNTER.Width = 108;
