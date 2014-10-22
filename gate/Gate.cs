@@ -460,7 +460,7 @@ namespace data
                     stringFormat.Alignment = StringAlignment.Far;
                     stringFormat.LineAlignment = StringAlignment.Center;
                     stringFormat.Trimming = StringTrimming.Word;
-                    var font = new Font("黑体", (int)(panelTips.Height*0.55), fontStyle, System.Drawing.GraphicsUnit.Pixel);
+                    var font = new Font("黑体", (int)(panelTips.Height*0.5), fontStyle, System.Drawing.GraphicsUnit.Pixel);
                     var size = e.Graphics.MeasureString("计划STDXX:XX ", font);
                     var remarkSize = e.Graphics.MeasureString(remark, font);
                     var rect = new Rectangle(e.ClipRectangle.X, e.ClipRectangle.Y, (int)(size.Width) + 5, panelTips.Height);

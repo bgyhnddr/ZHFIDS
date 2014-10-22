@@ -23,6 +23,10 @@ namespace VCustomControls
             this.SetStyle(ControlStyles.UserPaint, true);
             UpdateStyles();
             CellPaint();
+
+            this.MouseClick += new MouseEventHandler((o, e) => {
+                Drawed = false;
+            });
     //        InitTimer(rollingTimer, 60);
 
             //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -242,6 +246,7 @@ namespace VCustomControls
                                     }
                                 }));
                                 RollingCellList.Add(rollingCell);
+                                rollingCell.thread.IsBackground = true;
                                 rollingCell.thread.Start(rollingCell);
                                     //thread = new System.Threading.Thread(new System.Threading.ThreadStart(() => {
                                         

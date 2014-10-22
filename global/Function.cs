@@ -61,7 +61,7 @@ namespace global
                 {
 
                     conn.Open();
-                    string sql = string.Format("UPDATE `zh-fids`.`ipcstatus` SET `lastaccesstime` = '{0}' WHERE `ip` = '{1}';", DateTime.Now.ToString(global.Const.DATETIMEFORMAT), global.Variable.IP.ToString());
+                    string sql = string.Format("UPDATE `zh-fids`.`ipcstatus` SET `lastaccesstime` = now() WHERE `ip` = '{1}';", global.Variable.IP.ToString());
                     MySql.Data.MySqlClient.MySqlCommand comm = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
                     comm.ExecuteNonQuery();
 
