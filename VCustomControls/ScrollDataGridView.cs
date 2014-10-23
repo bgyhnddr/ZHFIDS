@@ -22,17 +22,14 @@ namespace VCustomControls
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
             UpdateStyles();
-            CellPaint();
-
             this.MouseClick += new MouseEventHandler((o, e) => {
                 Drawed = false;
             });
-    //        InitTimer(rollingTimer, 60);
-
-            //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-
-            //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            //this.SetStyle(ControlStyles.ResizeRedraw, true);
+        }
+        protected override void InitLayout()
+        {
+            base.InitLayout();
+            CellPaint();
         }
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -78,91 +75,6 @@ namespace VCustomControls
                 base.DataSource = value;
             }
         }
-
-        private void InitTimer(Timer timer,int interval)
-        {
-            timer.Interval = interval;
-            //timer.Tick += new EventHandler((o, e) => {
-            //    try
-            //    {
-            //        foreach (var rollingCell in RollingCellList)
-            //        {
-            //            var bufferImage = new Bitmap(rollingCell.rect.Width, rollingCell.rect.Height);
-            //            var imageGraphics = Graphics.FromImage(bufferImage);
-            //            imageGraphics.Clear(rollingCell.style.BackColor);
-
-            //            StringFormat stringFormat = new StringFormat();
-            //            stringFormat.Alignment = StringAlignment.Near;
-            //            stringFormat.LineAlignment = StringAlignment.Center;
-            //            stringFormat.Trimming = StringTrimming.Word;
-            //            var renderRect = new Rectangle(0, 5, (int)(rollingCell.textLenght * 1.1), rollingCell.rect.Height);
-            //            rollingCell.offset -= 4;
-            //            if (rollingCell.offset < -rollingCell.textLenght)
-            //            {
-            //                rollingCell.offset = rollingCell.rect.Width;
-            //            }
-
-            //            int offset = rollingCell.offset;
-
-
-            //            renderRect.Offset(offset, 0);
-            //            imageGraphics.DrawString(rollingCell.text,
-            //                rollingCell.style.Font,
-            //                new SolidBrush(rollingCell.style.ForeColor),
-            //                renderRect, stringFormat);
-            //            this.CreateGraphics().DrawImage((Image)bufferImage, rollingCell.rect);
-            //        }
-            //    }
-            //    catch
-            //    {
-
-            //    }
-            //});
-            //timer.Start();
-
-
-            System.Threading.Thread a = new System.Threading.Thread(new System.Threading.ThreadStart(() =>
-            {
-                while (!this.IsDisposed)
-                {
-                    try
-                    {
-                        foreach (var rollingCell in RollingCellList)
-                        {
-                            var bufferImage = new Bitmap(rollingCell.rect.Width, rollingCell.rect.Height);
-                            var imageGraphics = Graphics.FromImage(bufferImage);
-                            imageGraphics.Clear(rollingCell.style.BackColor);
-
-                            StringFormat stringFormat = new StringFormat();
-                            stringFormat.Alignment = StringAlignment.Near;
-                            stringFormat.LineAlignment = StringAlignment.Center;
-                            stringFormat.Trimming = StringTrimming.Word;
-                            var renderRect = new Rectangle(0, 5, (int)(rollingCell.textLenght * 1.1), rollingCell.rect.Height);
-                            rollingCell.offset -= 4;
-                            if (rollingCell.offset < -rollingCell.textLenght)
-                            {
-                                rollingCell.offset = rollingCell.rect.Width;
-                            }
-
-                            int offset = rollingCell.offset;
-                            renderRect.Offset(offset, 0);
-                            imageGraphics.DrawString(rollingCell.text,
-                                rollingCell.style.Font,
-                                new SolidBrush(rollingCell.style.ForeColor),
-                                renderRect, stringFormat);
-                            this.CreateGraphics().DrawImage((Image)bufferImage, rollingCell.rect);
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-                    System.Threading.Thread.Sleep(interval);
-                }
-            }));
-            a.Start();
-        }
-
         private void CellPaint()
         {
             this.CellPainting += new DataGridViewCellPaintingEventHandler((o, e) =>

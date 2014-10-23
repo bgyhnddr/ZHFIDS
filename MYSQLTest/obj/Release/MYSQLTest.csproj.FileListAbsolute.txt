@@ -1,0 +1,11 @@
+F:\开发\GitHub\ZHFIDS\MYSQLTest\bin\Release\MYSQLTest.exe
+F:\开发\GitHub\ZHFIDS\MYSQLTest\bin\Release\MYSQLTest.pdb
+F:\开发\GitHub\ZHFIDS\MYSQLTest\bin\Release\data.dll
+F:\开发\GitHub\ZHFIDS\MYSQLTest\bin\Release\MySql.Data.dll
+F:\开发\GitHub\ZHFIDS\MYSQLTest\bin\Release\data.pdb
+F:\开发\GitHub\ZHFIDS\MYSQLTest\obj\Release\MYSQLTest.csprojResolveAssemblyReference.cache
+F:\开发\GitHub\ZHFIDS\MYSQLTest\obj\Release\MYSQLTest.Properties.Resources.resources
+F:\开发\GitHub\ZHFIDS\MYSQLTest\obj\Release\MYSQLTest.TestForm.resources
+F:\开发\GitHub\ZHFIDS\MYSQLTest\obj\Release\MYSQLTest.csproj.GenerateResource.Cache
+F:\开发\GitHub\ZHFIDS\MYSQLTest\obj\Release\MYSQLTest.exe
+F:\开发\GitHub\ZHFIDS\MYSQLTest\obj\Release\MYSQLTest.pdb

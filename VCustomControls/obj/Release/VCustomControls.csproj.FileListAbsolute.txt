@@ -3,3 +3,11 @@ F:\开发\MYSQL\ZHFIDS\VCustomControls\bin\Release\VCustomControls.pdb
 F:\开发\MYSQL\ZHFIDS\VCustomControls\obj\Release\VCustomControls.csprojResolveAssemblyReference.cache
 F:\开发\MYSQL\ZHFIDS\VCustomControls\obj\Release\VCustomControls.dll
 F:\开发\MYSQL\ZHFIDS\VCustomControls\obj\Release\VCustomControls.pdb
+F:\开发\GitHub\ZHFIDS\VCustomControls\bin\Release\VCustomControls.dll
+F:\开发\GitHub\ZHFIDS\VCustomControls\bin\Release\VCustomControls.pdb
+F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.csprojResolveAssemblyReference.cache
+F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.CPictureBox.resources
+F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.ScrollDataGridView.resources
+F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.csproj.GenerateResource.Cache
+F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.dll
+F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.pdb

@@ -3,3 +3,9 @@ F:\开发\MYSQL\ZHFIDS\data\bin\Release\data.pdb
 F:\开发\MYSQL\ZHFIDS\data\obj\x86\Release\data.csprojResolveAssemblyReference.cache
 F:\开发\MYSQL\ZHFIDS\data\obj\x86\Release\data.dll
 F:\开发\MYSQL\ZHFIDS\data\obj\x86\Release\data.pdb
+F:\开发\GitHub\ZHFIDS\data\bin\Release\data.dll
+F:\开发\GitHub\ZHFIDS\data\bin\Release\data.pdb
+F:\开发\GitHub\ZHFIDS\data\bin\Release\MySql.Data.dll
+F:\开发\GitHub\ZHFIDS\data\obj\x86\Release\data.csprojResolveAssemblyReference.cache
+F:\开发\GitHub\ZHFIDS\data\obj\x86\Release\data.dll
+F:\开发\GitHub\ZHFIDS\data\obj\x86\Release\data.pdb
