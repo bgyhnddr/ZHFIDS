@@ -118,8 +118,3 @@ F:\开发\GitHub\ZHFIDS\ZHFIDS\obj\x86\Debug\ZHFIDS.FIDS.resources
 F:\开发\GitHub\ZHFIDS\ZHFIDS\obj\x86\Debug\ZHFIDS.MainNotify.resources
 F:\开发\GitHub\ZHFIDS\ZHFIDS\obj\x86\Debug\ZHFIDS.Properties.Resources.resources
 F:\开发\GitHub\ZHFIDS\ZHFIDS\obj\x86\Debug\ZHFIDS.csproj.GenerateResource.Cache
-F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\ZHFIDS\bin\Debug\UPDATE.exe
-F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\ZHFIDS\bin\Debug\UPDATE.pdb
-F:\开发\GitHub\ZHFIDS\ZHFIDS\bin\Debug\MySql.Data.dll
-F:\开发\GitHub\ZHFIDS\ZHFIDS\bin\Debug\UPDATE.exe
-F:\开发\GitHub\ZHFIDS\ZHFIDS\bin\Debug\UPDATE.pdb

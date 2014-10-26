@@ -56,9 +56,10 @@
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ref\MySql.Data.dll</HintPath>
+      <HintPath>C:\Program Files\MySQL\Connector NET 6.8.3\Assemblies\v4.0\MySql.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -181,10 +182,6 @@
     <ProjectReference Include="..\server\server.csproj">
       <Project>{FD69EC9C-3811-425F-A894-6CB5E62BEE59}</Project>
       <Name>server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UPDATE\UPDATE.csproj">
-      <Project>{b86ea639-019c-4a7a-bc50-f4bc13addadb}</Project>
-      <Name>UPDATE</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
