@@ -7,6 +7,7 @@ namespace global
 {
     public partial class Const
     {
+        public const byte Update = (byte)4;
         public const byte Shutdown = (byte)3;
         public const byte Reboot = (byte)2;
 
@@ -35,6 +36,9 @@ namespace global
         public const string DELETEWARN = "是否删除[{0}]？";
         public const string IFSHUTDOWNIPC = "是否关闭所有工控机";
         public const string GETDYNAMICBYPLANWARN = "手动获取动态数据将会停止从运营系统获取动态数据，并且会清空所有已经存在的非人工编辑模式的动态数据";
+        public const string SYNCLOGO = "是否同步logo？";
+        public const string SYNCAD = "是否同步AD？";
+        public const string SYNCDLL = "是否同步程序？";
         public const string ERROR = "发生错误，详细：{0}";
         public const string TIPS = "提示";
         public const string NORMAL = "正常";
@@ -49,6 +53,7 @@ namespace global
         public const string SYNCDATASOURCE = "更新基础数据";
         public const string SHUTDOWN = "发送关机命令";
         public const string REBOOT = "发送重启命令";
+        public const string UPDATEDLL = "更新动态库";
         public const string SYNCPLAN = "更新计划库";
         public const string PLANTODYNAMIC = "生成动态";
         public const string CHANGEFORMERROR = "切换窗口出错";

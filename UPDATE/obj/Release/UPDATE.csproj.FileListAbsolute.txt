@@ -1,0 +1,5 @@
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\UPDATE\bin\Release\UPDATE.exe
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\UPDATE\bin\Release\UPDATE.pdb
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\UPDATE\obj\Release\UPDATE.csprojResolveAssemblyReference.cache
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\UPDATE\obj\Release\UPDATE.exe
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\UPDATE\obj\Release\UPDATE.pdb

@@ -153,9 +153,24 @@ namespace filetransfer
                                     }
                                 #endregion
                                 }
-                                else
+                                //更新文件
+                                else if (typeBytes[0] == global.Const.Update)
                                 {
-
+                                    try
+                                    {
+                                        if (!Directory.Exists(global.Variable.UpdateFolder))
+                                        {
+                                            Directory.CreateDirectory(global.Variable.UpdateFolder);
+                                        }
+                                        SaveFile(oSocket, global.Variable.UpdateFolder);
+                                        oSocket.Close();
+                                        RunUPDATE();
+                                        
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        oSocket.Close();
+                                    }
                                 }
                             }
                             catch
@@ -189,7 +204,12 @@ namespace filetransfer
             ListenThread.Start(objout);
         }
 
-        private void HandleRec(byte action)
+        private static void RunUPDATE()
+        {
+            Process.Start(Application.StartupPath + "\\UPDATE.exe");
+            Application.Exit();
+        }
+        private static void HandleRec(byte action)
         {
             switch(action)
             {
@@ -239,7 +259,7 @@ namespace filetransfer
                 socket.Receive(fileSizeByte);
                 var fizeSize = BitConverter.ToInt32(fileSizeByte, 0);
                 //文件大小大于0才进行文件接收，否则表示文件发送完毕
-                if (fizeSize > 0)
+                if (fizeSize >= 0)
                 {
                     //发送1表示接收文件大小成功
                     socket.Send(new byte[1] { (byte)1 });
@@ -252,21 +272,21 @@ namespace filetransfer
                     socket.Send(new byte[1] { (byte)1 });
 
                     //接收文件本体并保存
-                    var imageFileByte = new byte[fizeSize];
+                    var fileByte = new byte[fizeSize];
 
                     int flag = 0;
-                    while (flag < imageFileByte.Length)
+                    while (flag < fileByte.Length)
                     {
-                        flag += socket.Receive(imageFileByte, flag, imageFileByte.Length - flag, SocketFlags.None);
+                        flag += socket.Receive(fileByte, flag, fileByte.Length - flag, SocketFlags.None);
                     }
-                    Debug.Print(flag.ToString() + " " + imageFileByte.Length);
+                    Debug.Print(flag.ToString() + " " + fileByte.Length);
                     if (fileName.IndexOf("/") >= 0)
                     {
-                        File.WriteAllBytes(global.Variable.IMAGEFolder + "\\" + fileName.TrimStart('/'), imageFileByte);
+                        File.WriteAllBytes(global.Variable.IMAGEFolder + "\\" + fileName.TrimStart('/'), fileByte);
                     }
                     else
                     {
-                        File.WriteAllBytes(path + "\\" + fileName, imageFileByte);
+                        File.WriteAllBytes(path + "\\" + fileName, fileByte);
                     }
                     //发送1表示该文件接收完毕
                     socket.Send(new byte[1] { (byte)1 });
@@ -283,7 +303,7 @@ namespace filetransfer
             var ipcRows = data.FIDSAdapter.IPCStatusAdapter.GetData().Where(o => o.ip == ipcIP).ToArray();
             if (ipcRows.Length > 0)
             {
-                var socket = new Socket(global.Variable.IP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout,0);
                 socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout,0);
                 socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.NoDelay, 1);
@@ -329,7 +349,7 @@ namespace filetransfer
                             SendFile(socket, files[i], true);
                         }
 
-                        socket.Send(BitConverter.GetBytes(0));
+                        socket.Send(BitConverter.GetBytes(-1));
                     }
 
                     obj.ReportProgress(100, "完成");
@@ -382,6 +402,53 @@ namespace filetransfer
             }
         }
 
+        public static void SendDLLFile(List<string> ips)
+        {
+            var progressForm = new global.ProgressBar(global.Const.UPDATEDLL);
+            progressForm.fidsBackgroundWorker.DoWork += new DoWorkEventHandler((sender, e) =>
+            {
+                var obj = (System.ComponentModel.BackgroundWorker)sender;
+
+                for (var j = 0; j < ips.Count; j++)
+                {
+                    try
+                    {
+                        var ipcIP = ips[j];
+                        obj.ReportProgress(0, "正在连接" + ipcIP);
+                        var socket = ConnectIPC(ipcIP);
+                        if (socket != null)
+                        {
+                            DirectoryInfo mydir = new DirectoryInfo(global.Variable.DLLFolder);
+                            var files = mydir.GetFiles().Where(o => o.Extension.ToLower() == ".dll" || o.Name == "ZHFIDS.exe").ToArray();
+                            obj.ReportProgress(0, "准备发送DLL文件到" + ipcIP);
+                            socket.Send(new byte[1] { global.Const.Update });
+                            var receiveByte = new byte[1];
+                            socket.Receive(receiveByte);
+                            if (receiveByte[0] == (byte)1)
+                            {
+                                for (var i = 0; i < files.Length; i++)
+                                {
+                                    Thread.Sleep(10);
+                                    SendFile(socket, files[i]);
+                                }
+                            }
+                            socket.Send(BitConverter.GetBytes(-1));
+                        }
+                        obj.ReportProgress(j * 100 / ips.Count, ipcIP + "文件发送完毕");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        obj.ReportProgress(j * 100 / ips.Count, ips[j] + "文件发送异常:" + ex.Message);
+                    }
+                }
+
+
+                obj.ReportProgress(100, "完成");
+                Thread.Sleep(500);
+            });
+            progressForm.Show();
+        }
 
         public static void SendADFileToIPC(string ipcIP)
         {
@@ -410,7 +477,7 @@ namespace filetransfer
                                 SendFile(socket, files[i]);
                             }
                         }
-                        socket.Send(BitConverter.GetBytes(0));
+                        socket.Send(BitConverter.GetBytes(-1));
                     }
 
                     obj.ReportProgress(100, "完成");
@@ -428,8 +495,8 @@ namespace filetransfer
 
         private static void SendFile(Socket socket, FileInfo file, bool isMask = false)
         {
-            var imageByte = File.ReadAllBytes(file.FullName);
-            var fileSizeByte = BitConverter.GetBytes((int)imageByte.Length);
+            var fileByte = File.ReadAllBytes(file.FullName);
+            var fileSizeByte = BitConverter.GetBytes((int)fileByte.Length);
 
             socket.Send(fileSizeByte);
 
@@ -442,7 +509,7 @@ namespace filetransfer
                 socket.Receive(answerByte);
                 if (answerByte[0] == (byte)1)
                 {
-                    socket.Send(imageByte);
+                    socket.Send(fileByte);
                     socket.Receive(answerByte);
                 }
             }

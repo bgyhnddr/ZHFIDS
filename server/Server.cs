@@ -233,7 +233,10 @@ namespace data
 
         private void btnSyncLogo_Click(object sender, EventArgs e)
         {
-            SendLogoFile();
+            if (MessageBox.Show(global.Const.SYNCLOGO, global.Const.TIPS, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                SendLogoFile();
+            }
         }
 
         private void SendLogoFile()
@@ -253,7 +256,10 @@ namespace data
 
         private void btnSyncAD_Click(object sender, EventArgs e)
         {
-            SendADFile();
+            if (MessageBox.Show(global.Const.SYNCAD, global.Const.TIPS, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                SendADFile();
+            }
         }
 
         private void SendADFile()
@@ -380,6 +386,19 @@ namespace data
                 string[] ss = { "" };
                 //重启远程计算机
                 mo.InvokeMethod(action, ss);
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(string.Format(global.Const.SYNCDLL), global.Const.TIPS, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var ips = new List<string>();
+                foreach (DataGridViewRow row in dglIPCStatus.SelectedRows)
+                {
+                    ips.Add(row.Cells[data.FIDSDataTable.IPCStatus.ipColumn.ColumnName].Value.ToString());
+                }
+                filetransfer.FileIO.SendDLLFile(ips);
             }
         }
     }

@@ -336,6 +336,20 @@ namespace global
                 return Application.StartupPath + "\\image\\ad";
             }
         }
+        public static string UpdateFolder
+        {
+            get
+            {
+                return Application.StartupPath + "\\update";
+            }
+        }
+        public static string DLLFolder
+        {
+            get
+            {
+                return Application.StartupPath;
+            }
+        }
         public static string IMAGEFolder
         {
             get
