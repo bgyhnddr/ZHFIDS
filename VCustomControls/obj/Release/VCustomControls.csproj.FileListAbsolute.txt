@@ -11,3 +11,11 @@ F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.ScrollDataGr
 F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.csproj.GenerateResource.Cache
 F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.dll
 F:\开发\GitHub\ZHFIDS\VCustomControls\obj\Release\VCustomControls.pdb
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\VCustomControls\bin\Release\VCustomControls.dll
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\VCustomControls\bin\Release\VCustomControls.pdb
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\VCustomControls\obj\Release\VCustomControls.csprojResolveAssemblyReference.cache
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\VCustomControls\obj\Release\VCustomControls.CPictureBox.resources
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\VCustomControls\obj\Release\VCustomControls.ScrollDataGridView.resources
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\VCustomControls\obj\Release\VCustomControls.csproj.GenerateResource.Cache
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\VCustomControls\obj\Release\VCustomControls.dll
+F:\项目分类\ZH-FIDS\SVN\Src\ZHFIDS\VCustomControls\obj\Release\VCustomControls.pdb

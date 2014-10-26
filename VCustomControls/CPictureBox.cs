@@ -88,7 +88,10 @@ namespace VCustomControls
             {
                 var pictureFile = files[i];
                 System.Drawing.Bitmap destBmp = new Bitmap(pictureFile.FullName);
-                pictureList.Add(destBmp);
+
+                System.Drawing.Image bmp = new System.Drawing.Bitmap(destBmp);
+                pictureList.Add(bmp);
+                destBmp.Dispose();
             }
             if (pictureList.Count > 0)
             {
